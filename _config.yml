@@ -1,0 +1,14 @@
+# GitHub Pages Configuration
+# Disable Jekyll processing
+markdown: kramdown
+theme: null
+
+# Site configuration
+title: My Site
+description: Static site
+
+# Build settings
+exclude:
+  - .github
+  - .gitignore
+  - README.md
