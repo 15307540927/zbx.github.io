@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵“易”站 - 特殊群体关怀</title>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 自定义Tailwind颜色变量（暖色系） -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-orange': '#E17055', // 暖橙主色
+                        'warm-brown': '#786F66',  // 暖棕中性色
+                        'warm-yellow': '#FDCB6E', // 暖黄辅助色
+                        'warm-pink': '#FFE0D0',   // 暖粉装饰色
+                        'warm-bg': '#FFF9E8',     // 暖系背景色
+                    },
+                    backgroundImage: {
+
+                        'psych-pattern-light': 'none',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- 自定义CSS（心理元素装饰+页面样式） -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* 自定义工具类 */
+            .content-auto {
+                content-visibility: auto;
+            }
+            .decor-heart {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background: theme('colors.warm-pink');
+                transform: rotate(45deg);
+                opacity: 0.25;
+                z-index: -1;
+            }
+            .decor-heart::before, .decor-heart::after {
+                content: "";
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background: theme('colors.warm-pink');
+                border-radius: 50%;
+            }
+            .decor-heart::before {
+                top: -25px;
+                left: 0;
+            }
+            .decor-heart::after {
+                top: 0;
+                left: -25px;
+            }
+            .decor-brain {
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                background: theme('colors.warm-orange');
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                opacity: 0.12;
+                z-index: -1;
+            }
+            .nav-link {
+                @apply px-3 py-2 rounded-lg text-warm-brown hover:text-warm-orange hover:bg-warm-orange/10 transition-all;
+            }
+        }
+
+        /* 全局样式 */
+        body {
+            background-color: theme('colors.warm-bg');
+            position: relative;
+        }
+
+        /* 页面装饰元素 */
+        
+    body {
+        background-color: #ffffff;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F9731610' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        position: relative;
+    }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- 导航栏（完整移植page3.html的导航栏） -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <!-- 品牌标识 -->
+            <div class="flex items-center">
+                <i class="fa fa-heart text-warm-orange text-2xl mr-2"></i>
+                <span class="text-xl font-bold text-warm-brown">心灵“易”站</span>
+            </div>
+
+            <!-- 导航菜单 - 桌面版 -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <a href="home.html" class="nav-link"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="nav-link"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="nav-link"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="nav-link"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="nav-link text-warm-orange font-medium bg-warm-orange/10"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="nav-link"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="nav-link"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </nav>
+
+            <!-- 用户信息 -->
+            <div class="flex items-center">
+                <div class="mr-4 hidden md:block">
+                    <span id="userName" class="text-warm-brown">访客</span>
+                </div>
+                <button id="logoutBtn" class="bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-lg hover:bg-warm-orange/20 transition">
+                    <i class="fa fa-sign-out mr-1"></i> 退出
+                </button>
+
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="ml-4 md:hidden text-gray-700 text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-1">
+                <a href="home.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="px-4 py-2 text-warm-orange font-medium"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="container mx-auto px-4 py-8 relative">
+        <!-- 心理装饰元素 -->
+        <div class="decor-brain top-20 left-10"></div>
+        <div class="decor-heart bottom-20 right-10"></div>
+
+        <!-- 特殊群体关怀页面内容 -->
+        <div class="bg-white rounded-xl shadow-md p-6 md:p-8 mb-8">
+            <h1 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-warm-orange mb-6 border-b border-warm-orange/20 pb-3">
+                特殊群体心理关怀
+            </h1>
+
+            <!-- 页面介绍 -->
+            <div class="mb-8">
+                <p class="text-warm-brown leading-relaxed mb-4">
+                    校园中的特殊群体往往面临更多的心理挑战，我们致力于为留守儿童、残障学生、贫困生、单亲家庭学生、少数民族学生等群体提供专属的心理支持与关怀服务，帮助他们建立健康的心理状态，更好地融入校园生活。
+                </p>
+            </div>
+
+            <!-- 特殊群体分类及心理特点 -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-warm-bg rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-warm-orange mb-3 flex items-center">
+                        <i class="fa fa-child mr-2"></i> 留守儿童
+                    </h3>
+                    <ul class="text-warm-brown space-y-2 list-disc pl-5">
+                        <li>缺乏亲情陪伴，易产生孤独感、安全感缺失</li>
+                        <li>与监护人沟通不畅，情绪表达能力较弱</li>
+                        <li>对未来规划模糊，学习动力不足</li>
+                        <li>敏感多疑，人际交往中易产生防御心理</li>
+                    </ul>
+                </div>
+
+                <div class="bg-warm-bg rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-warm-orange mb-3 flex items-center">
+                        <i class="fa fa-wheelchair mr-2"></i> 残障学生
+                    </h3>
+                    <ul class="text-warm-brown space-y-2 list-disc pl-5">
+                        <li>易产生自卑心理，自我价值感偏低</li>
+                        <li>社交意愿低，害怕被歧视或异样眼光</li>
+                        <li>因身体限制产生挫败感，情绪易低落</li>
+                        <li>对学业和未来就业存在焦虑情绪</li>
+                    </ul>
+                </div>
+
+                <div class="bg-warm-bg rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-warm-orange mb-3 flex items-center">
+                        <i class="fa fa-money mr-2"></i> 贫困生
+                    </h3>
+                    <ul class="text-warm-brown space-y-2 list-disc pl-5">
+                        <li>经济压力大，易产生敏感、自卑情绪</li>
+                        <li>担心学业费用，心理负担重</li>
+                        <li>社交中易因消费差异产生隔阂</li>
+                        <li>急于证明自己，易产生过度焦虑</li>
+                    </ul>
+                </div>
+
+                <div class="bg-warm-bg rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-semibold text-warm-orange mb-3 flex items-center">
+                        <i class="fa fa-home mr-2"></i> 单亲家庭学生
+                    </h3>
+                    <ul class="text-warm-brown space-y-2 list-disc pl-5">
+                        <li>家庭支持不足，易缺乏安全感</li>
+                        <li>对亲密关系存在恐惧或过度依赖</li>
+                        <li>易出现情绪波动，易怒或抑郁</li>
+                        <li>人际交往中易产生信任危机</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 关怀措施 -->
+            <div class="bg-warm-orange/5 rounded-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-warm-orange mb-4 flex items-center">
+                    <i class="fa fa-hand-heart mr-2"></i> 我们的关怀措施
+                </h2>
+                <div class="grid md:grid-cols-3 gap-4 text-warm-brown">
+                    <div class="bg-white rounded-md p-4 shadow-sm">
+                        <h4 class="font-semibold mb-2">一对一专属辅导</h4>
+                        <p class="text-sm">为特殊群体学生匹配专属心理老师，定期进行一对一心理疏导，建立长期信任的支持关系。</p>
+                    </div>
+                    <div class="bg-white rounded-md p-4 shadow-sm">
+                        <h4 class="font-semibold mb-2">团体心理活动</h4>
+                        <p class="text-sm">组织主题团体辅导活动，增强群体归属感，提升社交能力，减少孤独感。</p>
+                    </div>
+                    <div class="bg-white rounded-md p-4 shadow-sm">
+                        <h4 class="font-semibold mb-2">绿色通道支持</h4>
+                        <p class="text-sm">开通心理援助绿色通道，优先提供咨询服务，联动学校各部门提供综合支持。</p>
+                    </div>
+                    <div class="bg-white rounded-md p-4 shadow-sm">
+                        <h4 class="font-semibold mb-2">家校联动关怀</h4>
+                        <p class="text-sm">与家长/监护人定期沟通，指导家庭心理支持方法，形成家校共育的支持体系。</p>
+                    </div>
+                    <div class="bg-white rounded-md p-4 shadow-sm">
+                        <h4 class="font-semibold mb-2">定制化科普内容</h4>
+                        <p class="text-sm">针对不同群体特点制作专属心理科普材料，帮助学生了解自身心理状态，学会自我调节。</p>
+                    </div>
+                    <div class="bg-white rounded-md p-4 shadow-sm">
+                        <h4 class="font-semibold mb-2">校园包容氛围营造</h4>
+                        <p class="text-sm">通过校园宣传、主题活动等方式，提升全校师生对特殊群体的理解与包容。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 求助方式 -->
+            <div class="bg-white border border-warm-orange/20 rounded-lg p-6">
+                <h2 class="text-xl font-bold text-warm-orange mb-4 flex items-center">
+                    <i class="fa fa-phone-square mr-2"></i> 即时求助方式
+                </h2>
+                <div class="text-warm-brown space-y-3">
+                    <p><strong>线上咨询：</strong>点击导航栏「智能咨询师」，选择「特殊群体关怀」分类，7×24小时在线解答</p>
+                    <p><strong>线下预约：</strong>九栋心理健康中心</p>
+                    <p><strong>心理测评：</strong>完成专属心理测评，了解自身状态</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-warm-brown text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <i class="fa fa-heart text-warm-yellow text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">心灵“易”站</span>
+                    </div>
+                    <p class="text-white/70 mt-2 text-sm">易班校园心理帮扶平台 © 2025</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-weixin text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-phone text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-white/50 text-sm">
+                心理援助热线：12356 | 工作时间：周一至周日 08:00-22:00
+            </div>
+        </div>
+    </footer>
+
+    <!-- 脚本（移动端菜单+用户信息+退出登录） -->
+    <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 读取本地存储的用户信息（配合登录系统）
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('mindEasyStationCurrentUser');
+            if (userName) {
+                document.getElementById('userName').textContent = userName;
+            }
+
+            // 退出登录功能
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', () => {
+                if (confirm('确定要退出登录吗？')) {
+                    localStorage.removeItem('mindEasyStationCurrentUser');
+                    window.location.href = 'login.html'; // 跳转到登录页
+                }
+            });
+        });
+    </script>
+</body>
+</html>

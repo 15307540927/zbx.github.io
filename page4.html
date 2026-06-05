@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵“易”站 - 智能心理咨询师</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            orange: '#F97316',
+                            pink: '#F87171',
+                            yellow: '#FBBF24',
+                            beige: '#F5F5F4',
+                            brown: '#92400E',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-psych-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F9731610' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .nav-link {
+                @apply relative px-4 py-2 text-gray-700 hover:text-warm-orange transition;
+            }
+            .nav-link::after {
+                @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-warm-orange transition-all duration-300 -translate-x-1/2;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .card-hover {
+                @apply hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+            }
+            .tag {
+                @apply inline-block px-3 py-1 rounded-full text-sm font-medium;
+            }
+        }
+    </style>
+</head>
+<body class="bg-warm-beige bg-psych-pattern min-h-screen">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <!-- 品牌标识 -->
+            <div class="flex items-center">
+                <i class="fa fa-heart text-warm-orange text-2xl mr-2"></i>
+                <span class="text-xl font-bold text-warm-brown">心灵“易”站</span>
+            </div>
+
+            <!-- 导航菜单 - 桌面版 -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <a href="home.html" class="nav-link"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="nav-link"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="nav-link"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="nav-link"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="nav-link"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="nav-link text-warm-orange font-medium"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="nav-link"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </nav>
+
+            <!-- 用户信息 -->
+            <div class="flex items-center">
+                <div class="mr-4 hidden md:block">
+                    <span id="userName" class="text-warm-brown"></span>
+                </div>
+                <button id="logoutBtn" class="bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-lg hover:bg-warm-orange/20 transition">
+                    <i class="fa fa-sign-out mr-1"></i> 退出
+                </button>
+
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="ml-4 md:hidden text-gray-700 text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-1">
+                <a href="home.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="px-4 py-2 text-warm-orange font-medium"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </div>
+        </div>
+    </header>
+
+ <!-- 主要内容 -->
+    <section class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">智能心理咨询师</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">7×24小时在线的AI心理咨询智能体，为你提供专业、私密、即时的心理支持</p >
+        </div>
+
+        <!-- 智能体嵌入区域 -->
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <div class="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center mb-6">
+                <i class="fa-solid fa-robot text-primary text-4xl mb-4"></i>
+                <p class="text-gray-600 mb-4">以下为智能心理咨询师</p >
+                <!-- 智能体嵌入位置 - 替换为实际链接 -->
+                <iframe src="https://doubao.com/bot/VYuebWr3" class="w-full h-[600px] border-0 rounded-lg mt-4" frameborder="0"></iframe>
+            </div>
+
+            <!-- 功能说明 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div class="bg-warm/30 rounded-lg p-5">
+                    <i class="fa-solid fa-shield-halved text-primary text-2xl mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">隐私保护</h3>
+                    <p class="text-gray-600 text-sm">所有咨询内容严格保密，采用端到端加密技术，保障你的隐私安全</p >
+                </div>
+                <div class="bg-warm/30 rounded-lg p-5">
+                    <i class="fa-solid fa-clock text-primary text-2xl mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">7×24小时服务</h3>
+                    <p class="text-gray-600 text-sm">全天候在线响应，无论何时何地，都能为你提供即时的心理支持</p >
+                </div>
+                <div class="bg-warm/30 rounded-lg p-5">
+                    <i class="fa-solid fa-clock text-primary text-2xl mb-3"></i>
+                    <h3 class="text-lg font-semibold mb-2">专业指导</h3>
+                    <p class="text-gray-600 text-sm">基于专业心理学知识库，提供科学的情绪疏导和心理调节建议</p >
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-warm-brown text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <i class="fa fa-heart text-warm-yellow text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">心灵“易”站</span>
+                    </div>
+                    <p class="text-white/70 mt-2 text-sm">易班校园心理帮扶平台 © 2025</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-weixin text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-phone text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-white/50 text-sm">
+                心理援助热线：12356 | 工作时间：周一至周日 08:00-22:00
+            </div>
+        </div>
+    </footer>
+    <!-- 脚本逻辑 -->
+    <script>
+        // 验证登录状态
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+            // 显示用户名
+            const user = JSON.parse(currentUser);
+            document.getElementById('userName').textContent = `欢迎，${user.name}`;
+
+            // 退出登录
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+
+            // 移动端菜单切换
+            document.getElementById('menuBtn').addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 平滑滚动到案例
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵“易”站 - AI学业疏导专区</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            orange: '#F97316', // 主暖橙
+                            pink: '#F87171',   // 暖粉
+                            yellow: '#FBBF24', // 暖黄
+                            beige: '#F5F5F4',  // 暖米色
+                            brown: '#92400E',  // 暖棕
+                            red: '#EF4444',    // 暖红
+                            peach: '#FF9F43',  // 蜜桃橙
+                            amber: '#F59E0B',  // 琥珀黄
+                            tan: '#D19669',    // 浅棕
+                            ai: '#F97316'      // AI主题色统一为暖橙
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-ai-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F9731610' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .nav-link {
+                @apply relative px-4 py-2 text-gray-700 hover:text-warm-orange transition;
+            }
+            .nav-link::after {
+                @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-warm-orange transition-all duration-300 -translate-x-1/2;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .ai-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg border-b-4;
+            }
+            .case-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg flex flex-col h-full;
+            }
+            .tool-card {
+                @apply bg-white rounded-xl p-6 shadow-md text-center hover:shadow-lg transition;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white bg-ai-pattern min-h-screen">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <!-- 品牌标识 -->
+            <div class="flex items-center">
+                <i class="fa fa-heart text-warm-orange text-2xl mr-2"></i>
+                <span class="text-xl font-bold text-warm-brown">心灵“易”站</span>
+            </div>
+
+            <!-- 导航菜单 - 桌面版 -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <a href="home.html" class="nav-link"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="nav-link"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="nav-link"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="nav-link text-warm-orange font-medium"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="nav-link"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="nav-link"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="nav-link"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </nav>
+
+            <!-- 用户信息 -->
+            <div class="flex items-center">
+                <div class="mr-4 hidden md:block">
+                    <span id="userName" class="text-warm-brown"></span>
+                </div>
+                <button id="logoutBtn" class="bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-lg hover:bg-warm-orange/20 transition">
+                    <i class="fa fa-sign-out mr-1"></i> 退出
+                </button>
+
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="ml-4 md:hidden text-gray-700 text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-1">
+                <a href="home.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="px-4 py-2 text-warm-orange font-medium"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面头部Banner -->
+    <section class="relative py-12">
+        
+        <img src="./image/4.jpg" alt="AI智能学业成长助手" class="absolute inset-0 w-full h-full object-cover">
+       
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4 text-warm-brown">AI智能学业成长助手</h1>
+            <p class="text-lg max-w-2xl mx-auto mb-6 text-gray-700">基于校园学情大数据与AI算法，为中小学生定制个性化学业提升方案，缓解学习焦虑，提升学习效率</p>
+            <a href="page2-1.html" class="bg-warm-orange text-white px-6 py-3 rounded-lg hover:bg-warm-orange/90 transition inline-flex items-center">
+                <i class="fa fa-graduation-cap mr-2"></i> 学业压力疏导专家
+            </a>
+        </div>
+    </section>
+
+    <!-- AI核心功能板块 -->
+    <section class="container mx-auto px-4 py-12" id="ai-functions">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">AI学业成长核心功能</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 学情分析报告 -->
+            <div class="ai-card border-warm-amber">
+                <div class="h-40 bg-warm-amber/10 flex items-center justify-center">
+                    <i class="fa fa-bar-chart text-6xl text-warm-amber"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-amber mb-3">学情分析报告</h3>
+                    <p class="text-gray-600 text-sm mb-4">基于历次作业、考试数据，AI分析知识薄弱点，生成可视化学情报告</p>
+                    <a href="https://doubao.com/bot/TsvEWrVT" class="text-warm-amber hover:text-warm-amber/80 flex items-center">
+                        生成报告 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 个性化学习路径 -->
+            <div class="ai-card border-warm-yellow">
+                <div class="h-40 bg-warm-yellow/10 flex items-center justify-center">
+                    <i class="fa fa-map-signs text-6xl text-warm-yellow"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-yellow mb-3">个性化学习路径</h3>
+                    <p class="text-gray-600 text-sm mb-4">根据学情报告，AI规划每日学习内容，精准攻克薄弱知识点</p>
+                    <a href="https://doubao.com/bot/ZoqrFtIQ" class="text-warm-yellow hover:text-warm-yellow/80 flex items-center">
+                        定制路径 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 错题智能讲解 -->
+            <div class="ai-card border-warm-peach">
+                <div class="h-40 bg-warm-peach/10 flex items-center justify-center">
+                    <i class="fa fa-question-circle text-6xl text-warm-peach"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-peach mb-3">错题智能讲解</h3>
+                    <p class="text-gray-600 text-sm mb-4">拍照上传错题，AI多角度解析考点，提供同类题练习巩固</p>
+                    <a href="https://doubao.com/bot/q8QGG6VE" class="text-warm-peach hover:text-warm-peach/80 flex items-center">
+                        体验讲解 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 学习状态监测 -->
+            <div class="ai-card border-warm-pink">
+                <div class="h-40 bg-warm-pink/10 flex items-center justify-center">
+                    <i class="fa fa-heartbeat text-6xl text-warm-pink"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-pink mb-3">学习状态监测</h3>
+                    <p class="text-gray-600 text-sm mb-4">AI识别学习疲劳、注意力不集中等状态，及时提醒休息调整</p>
+                    <a href="https://doubao.com/bot/YQD6xw7w" class="text-warm-pink hover:text-warm-pink/80 flex items-center">
+                        查看状态 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学情分析报告板块 -->
+    <section class="container mx-auto px-4 py-12" id="study-analysis">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">AI学情分析报告示例</h2>
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-warm-amber/5 rounded-lg p-4 text-center">
+                    <p class="text-sm text-gray-500 mb-1">Java综合掌握度</p>
+                    <p class="text-3xl font-bold text-warm-amber">85%</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div class="bg-warm-amber h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="bg-warm-yellow/5 rounded-lg p-4 text-center">
+                    <p class="text-sm text-gray-500 mb-1">VScode综合掌握度</p>
+                    <p class="text-3xl font-bold text-warm-yellow">72%</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div class="bg-warm-yellow h-2 rounded-full" style="width: 72%"></div>
+                    </div>
+                </div>
+                <div class="bg-warm-peach/5 rounded-lg p-4 text-center">
+                    <p class="text-sm text-gray-500 mb-1">MySQL综合掌握度</p>
+                    <p class="text-3xl font-bold text-warm-peach">90%</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div class="bg-warm-peach h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-6 mb-6">
+                <h3 class="text-lg font-semibold text-warm-brown mb-4">薄弱知识点分析（VScode）</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fa fa-exclamation-circle text-warm-red mr-2"></i>
+                            <span class="text-gray-700">js</span>
+                        </div>
+                        <div class="w-1/2 bg-gray-200 rounded-full h-2">
+                            <div class="bg-warm-red h-2 rounded-full" style="width: 45%"></div>
+                        </div>
+                        <span class="text-warm-red text-sm">掌握度45%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fa fa-exclamation-circle text-warm-orange mr-2"></i>
+                            <span class="text-gray-700">css</span>
+                        </div>
+                        <div class="w-1/2 bg-gray-200 rounded-full h-2">
+                            <div class="bg-warm-orange h-2 rounded-full" style="width: 60%"></div>
+                        </div>
+                        <span class="text-warm-orange text-sm">掌握度60%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fa fa-check-circle text-green-500 mr-2"></i>
+                            <span class="text-gray-700">html</span>
+                        </div>
+                        <div class="w-1/2 bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 92%"></div>
+                        </div>
+                        <span class="text-green-500 text-sm">掌握度92%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学业辅助工具 -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">校园学业辅助工具</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="tool-card">
+                <div class="w-16 h-16 bg-warm-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-calculator text-2xl text-warm-orange"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">AI解题计算器</h3>
+                <p class="text-gray-600 text-sm mb-4">支持数理化公式计算，分步展示解题过程，理解解题思路</p>
+                <a href="https://doubao.com/bot/fUTO0reo" class="text-warm-orange hover:text-warm-orange/80 inline-flex items-center justify-center">
+                    <i class="fa fa-cog mr-1"></i> 立即使用
+                </a>
+            </div>
+            <div class="tool-card">
+                <div class="w-16 h-16 bg-warm-amber/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-book text-2xl text-warm-amber"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">知识点速记卡片</h3>
+                <p class="text-gray-600 text-sm mb-4">AI生成图文并茂的记忆卡片，利用艾宾浩斯遗忘曲线智能提醒复习</p>
+                <a href="https://doubao.com/bot/86I8pbCt" class="text-warm-amber hover:text-warm-amber/80 inline-flex items-center justify-center">
+                    <i class="fa fa-clone mr-1"></i> 生成卡片
+                </a>
+            </div>
+            <div class="tool-card">
+                <div class="w-16 h-16 bg-warm-pink/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-headphones text-2xl text-warm-pink"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">沉浸式学习音频</h3>
+                <p class="text-gray-600 text-sm mb-4">定制化学习背景音乐，屏蔽外界干扰，提升专注度</p>
+                <a href="https://y.qq.com/n/ryqq/playlist/8469194030" class="text-warm-pink hover:text-warm-pink/80 inline-flex items-center justify-center">
+                    <i class="fa fa-play-circle mr-1"></i> 开始播放
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-warm-brown text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <i class="fa fa-heart text-warm-yellow text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">心灵“易”站</span>
+                    </div>
+                    <p class="text-white/70 mt-2 text-sm">AI学业成长专区 © 2025</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-weixin text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-phone text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-white/50 text-sm">
+                <p>心理援助热线：12356 | 服务时间：周一至周日 8:00-21:00</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- 核心脚本 -->
+    <script>
+        // 页面加载初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            // 模拟登录状态
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                const user = JSON.parse(currentUser);
+                document.getElementById('userName').textContent = `欢迎，${user.name}`;
+            } else {
+                document.getElementById('userName').textContent = '欢迎访问';
+            }
+
+            // 退出登录
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+
+            // 移动端菜单切换
+            document.getElementById('menuBtn').addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                        behavior: 'smooth'
+                    });
+                });
+            });
+    </script>
+</body>
+</html>

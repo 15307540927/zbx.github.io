@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考试前夜助眠指南</title>
+    <style>
+        /* --- 全局重置与布局 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a; /* 影院背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* --- 视口容器 (16:9) --- */
+        .viewport {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background-color: #F0F4F8; /* 柔和的浅灰蓝背景 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: background-color 2s ease;
+        }
+
+        /* 夜晚模式背景 */
+        .viewport.night-mode {
+            background-color: #2C3E50;
+        }
+
+        /* --- 通用元素层 --- */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .layer.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- 场景 1: 焦虑 (Bed & Clock) --- */
+        .scene-anxiety {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 床 */
+        .bed {
+            position: absolute;
+            bottom: 20%;
+            width: 60%;
+            height: 15px;
+            background: #D7CCC8;
+            border-radius: 10px;
+        }
+        .bed::after { /*床腿*/
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 10%;
+            width: 10px;
+            height: 20px;
+            background: #8D6E63;
+            box-shadow: 450px 0 0 #8D6E63; /*第二个腿*/
+        }
+
+        /* 人物 */
+        .person {
+            position: absolute;
+            bottom: 22%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 40px;
+            background: #FFCCBC; /* 皮肤 */
+            border-radius: 20px;
+            transition: transform 0.5s ease;
+        }
+        
+        /* 被子 */
+        .blanket {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 50px;
+            background: #B3E5FC;
+            border-radius: 25px 25px 5px 5px;
+            z-index: 2;
+        }
+
+        /* 头部 */
+        .head {
+            position: absolute;
+            bottom: 50px;
+            left: -40px; /* 相对身体 */
+            width: 50px;
+            height: 50px;
+            background: #FFCCBC;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* 眼睛 (焦虑状态) */
+        .eyes {
+            position: absolute;
+            top: 18px;
+            left: 25px;
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            box-shadow: 12px 0 0 #333;
+            animation: blink 2s infinite;
+        }
+
+        /* 翻身动画 */
+        .scene-anxiety.tossing .person {
+            animation: toss 1.5s infinite ease-in-out;
+        }
+
+        /* 焦虑气泡 */
+        .thought-bubble {
+            position: absolute;
+            top: 20%;
+            right: 25%;
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 1.5rem;
+            color: #E53935;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        .thought-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: #fff transparent;
+        }
+
+        /* 钟表 */
+        .clock {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            border: 4px solid #546E7A;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .clock-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 2px;
+            background: #333;
+            transform-origin: left center;
+            animation: spin 2s linear infinite;
+        }
+
+        /* --- 场景 2: 呼吸法 (Breathing) --- */
+        .scene-breathing {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #E0F2F1; /* 清新的薄荷绿背景 */
+        }
+
+        .breath-circle {
+            width: 150px;
+            height: 150px;
+            background: #80CBC4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: 0 0 0 0 rgba(128, 203, 196, 0.7);
+        }
+
+        .breath-instruction {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            color: #00695C;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s;
+        }
+        .breath-instruction.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 场景 3: 环境 (Environment) --- */
+        .scene-env {
+            background: #FFF3E0; /* 暖色调 */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        /* 手机 */
+        .phone-container {
+            position: relative;
+            width: 100px;
+            height: 180px;
+            background: #333;
+            border-radius: 15px;
+            border: 4px solid #555;
+            overflow: hidden;
+            transition: transform 1s ease, opacity 1s ease;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 1s;
+        }
+        .msg {
+            width: 70%;
+            height: 10px;
+            background: #eee;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        
+        /* 禁止符号 */
+        .ban-sign {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 80px;
+            height: 80px;
+            border: 5px solid #E53935;
+            border-radius: 50%;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .ban-sign::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            width: 80%;
+            height: 5px;
+            background: #E53935;
+            transform: rotate(-45deg);
+        }
+
+        /* 温度计/雪花 */
+        .snowflake {
+            font-size: 5rem;
+            color: #81D4FA;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        /* --- 场景 4: 入睡 (Sleep) --- */
+        .scene-sleep {
+            /* 复用场景1的结构，但在 JS 中修改样式 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .zzz {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+            opacity: 0;
+        }
+
+        /* --- 字幕条 --- */
+        .subtitle-bar {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .subtitle-cn {
+            display: block;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.5);
+            transition: color 1s;
+        }
+        
+        .subtitle-en {
+            display: block;
+            font-size: 1rem;
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: color 1s;
+        }
+        
+        /* 夜间模式字幕 */
+        .night-mode .subtitle-cn { color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .night-mode .subtitle-en { color: #ccc; }
+
+        /* --- 动画 Keyframes --- */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes toss { 
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-55%) rotate(-5deg); }
+            75% { transform: translateX(-45%) rotate(5deg); }
+        }
+        @keyframes blink { 0%, 90%, 100% { height: 8px; } 95% { height: 1px; } }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 80% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes floatUp { 0% { transform: translateY(0) translateX(0); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-50px) translateX(20px); opacity: 0; } }
+        
+        /* 呼吸动画 */
+        @keyframes inhale { 0% { transform: scale(1); } 100% { transform: scale(1.5); } }
+        @keyframes hold { 0% { transform: scale(1.5); } 100% { transform: scale(1.5); } }
+        @keyframes exhale { 0% { transform: scale(1.5); } 100% { transform: scale(1); } }
+
+    </style>
+</head>
+<body>
+
+    <div class="viewport" id="viewport">
+        
+        <!-- 场景 1: 焦虑 -->
+        <div class="layer scene-anxiety" id="scene1">
+            <div class="clock"><div class="clock-hand"></div></div>
+            <div class="thought-bubble" id="bubble1">Exam?</div>
+            <div class="thought-bubble" style="top: 30%; right: 15%; animation-delay: 0.5s;" id="bubble2">Fail?</div>
+            
+            <div class="bed"></div>
+            <div class="person">
+                <div class="head">
+                    <div class="eyes"></div>
+                </div>
+            </div>
+            <div class="blanket"></div>
+        </div>
+
+        <!-- 场景 2: 呼吸 -->
+        <div class="layer scene-breathing" id="scene2">
+            <div class="breath-circle" id="breathCircle">4</div>
+            <div class="breath-instruction" id="breathText">Inhale / 吸气</div>
+        </div>
+
+        <!-- 场景 3: 环境 -->
+        <div class="layer scene-env" id="scene3">
+            <div class="phone-container" id="phone">
+                <div class="phone-screen">
+                    <div style="display:flex; flex-direction:column; align-items:center; width:100%">
+                        <div class="msg"></div><div class="msg"></div><div class="msg"></div>
+                    </div>
+                </div>
+                <div class="ban-sign" id="banSign"></div>
+            </div>
+            <div class="snowflake" id="snowflake">❄️ <span style="font-size:2rem">20°C</span></div>
+        </div>
+
+        <!-- 场景 4: 睡眠 -->
+        <div class="layer scene-sleep" id="scene4">
+            <div class="bed"></div>
+            <div class="person" style="bottom: 20%;">
+                <div class="head">
+                    <!-- 闭眼 -->
+                    <div class="eyes" style="height: 2px; top: 22px; animation: none; box-shadow: none; border-bottom: 2px solid #333;"></div>
+                    <div class="eyes" style="height: 2px; top: 22px; left: 45px; animation: none; box-shadow: none; border-bottom: 2px solid #333;"></div>
+                </div>
+            </div>
+            <div class="blanket" style="bottom: 18%;"></div>
+            <div class="zzz" style="top: 40%; left: 52%;">Zzz</div>
+            <div class="zzz" style="top: 35%; left: 55%; animation-delay: 0.5s;">Zzz</div>
+        </div>
+
+        <!-- 字幕层 -->
+        <div class="subtitle-bar">
+            <span class="subtitle-cn" id="subCN"></span>
+            <span class="subtitle-en" id="subEN"></span>
+        </div>
+
+    </div>
+
+    <script>
+        // 辅助函数：等待毫秒
+        const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+        // DOM 元素
+        const els = {
+            viewport: document.getElementById('viewport'),
+            subCN: document.getElementById('subCN'),
+            subEN: document.getElementById('subEN'),
+            scene1: document.getElementById('scene1'),
+            scene2: document.getElementById('scene2'),
+            scene3: document.getElementById('scene3'),
+            scene4: document.getElementById('scene4'),
+            bubble1: document.getElementById('bubble1'),
+            bubble2: document.getElementById('bubble2'),
+            breathCircle: document.getElementById('breathCircle'),
+            breathText: document.getElementById('breathText'),
+            phone: document.getElementById('phone'),
+            banSign: document.getElementById('banSign'),
+            snowflake: document.getElementById('snowflake'),
+            zzz: document.querySelectorAll('.zzz')
+        };
+
+        // 字幕更新函数
+        function setSubtitle(cn, en) {
+            els.subCN.style.opacity = 0;
+            els.subEN.style.opacity = 0;
+            
+            setTimeout(() => {
+                els.subCN.innerText = cn;
+                els.subEN.innerText = en;
+                els.subCN.style.opacity = 1;
+                els.subEN.style.opacity = 1;
+            }, 500);
+        }
+
+        // 场景切换函数
+        function showScene(sceneEl) {
+            [els.scene1, els.scene2, els.scene3, els.scene4].forEach(el => {
+                el.classList.remove('active');
+            });
+            sceneEl.classList.add('active');
+        }
+
+        // 主动画流程
+        async function startAnimation() {
+            
+            // --- Intro / Scene 1: Anxiety ---
+            showScene(els.scene1);
+            setSubtitle("考试前夜，大脑还在飞速运转...", "The night before the exam, your brain won't stop...");
+            els.scene1.classList.add('tossing'); // 开始翻身动画
+            
+            await wait(3000);
+            
+            els.bubble1.style.animation = "popIn 0.5s forwards";
+            await wait(1000);
+            els.bubble2.style.animation = "popIn 0.5s forwards";
+            setSubtitle("焦虑感让你辗转反侧，无法入睡。", "Anxiety makes you toss and turn, keeping you awake.");
+            
+            await wait(4000);
+
+            // --- Scene 2: 4-7-8 Breathing ---
+            setSubtitle("试试科学的「4-7-8 呼吸法」。", "Try the scientific '4-7-8 Breathing Technique'.");
+            showScene(els.scene2);
+            
+            await wait(3000);
+
+            // 4秒吸气
+            setSubtitle("第一步：用鼻子吸气，默数 4 秒。", "Step 1: Inhale through your nose for 4 seconds.");
+            els.breathText.innerText = "Inhale (4s)";
+            els.breathText.classList.add('show');
+            els.breathCircle.style.transition = "transform 4s ease-in-out";
+            els.breathCircle.style.transform = "scale(1.5)";
+            
+            // 倒计时逻辑
+            for(let i=1; i<=4; i++) { els.breathCircle.innerText = i; await wait(1000); }
+
+            // 7秒憋气
+            setSubtitle("第二步：憋住呼吸，默数 7 秒。", "Step 2: Hold your breath for 7 seconds.");
+            els.breathText.innerText = "Hold (7s)";
+            els.breathCircle.style.transition = "none"; // 保持状态
+            
+            for(let i=1; i<=7; i++) { els.breathCircle.innerText = i; await wait(1000); }
+
+            // 8秒呼气
+            setSubtitle("第三步：用嘴缓慢呼气，默数 8 秒。", "Step 3: Exhale slowly through your mouth for 8 seconds.");
+            els.breathText.innerText = "Exhale (8s)";
+            els.breathCircle.style.transition = "transform 8s ease-in-out";
+            els.breathCircle.style.transform = "scale(1)";
+            
+            for(let i=1; i<=8; i++) { els.breathCircle.innerText = i; await wait(1000); }
+
+            setSubtitle("重复这个循环，直到心跳平缓。", "Repeat this cycle until your heartbeat slows down.");
+            await wait(3000);
+
+            // --- Scene 3: Environment ---
+            showScene(els.scene3);
+            setSubtitle("除了呼吸，还要调整你的睡眠环境。", "Besides breathing, adjust your sleep environment.");
+            await wait(3000);
+
+            setSubtitle("放下手机，蓝光会抑制褪黑素分泌。", "Put the phone away. Blue light suppresses melatonin.");
+            
+            // 手机动画
+            await wait(1000);
+            els.phone.querySelector('.phone-screen').style.background = '#000'; // 关屏
+            await wait(500);
+            els.banSign.style.transform = "translate(-50%, -50%) scale(1)"; // 禁止标志
+            els.phone.style.opacity = 0.5;
+            els.phone.style.transform = "translateY(20px)";
+
+            await wait(3000);
+
+            setSubtitle("降低室温，凉爽的环境更易入睡。", "Cool down the room. A cooler environment helps you sleep.");
+            els.snowflake.style.opacity = 1;
+            els.snowflake.style.transform = "translateY(0)";
+            els.snowflake.style.transition = "all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+
+            await wait(4000);
+
+            // --- Scene 4: Sleep / Conclusion ---
+            els.viewport.classList.add('night-mode'); // 切换到深色背景
+            showScene(els.scene4);
+            setSubtitle("最重要的是，接纳你的紧张。", "Most importantly, accept your nervousness.");
+            
+            await wait(3000);
+            
+            setSubtitle("那只是身体在为你明天的挑战储备能量。", "It's just your body reserving energy for tomorrow's challenge.");
+            
+            // Zzz 动画
+            els.zzz.forEach((el, index) => {
+                el.style.animation = `floatUp 2s infinite ${index * 0.5}s`;
+            });
+
+            await wait(4000);
+
+            setSubtitle("相信你的准备。晚安，祝你考试顺利。", "Trust your preparation. Good night, and good luck.");
+            
+            // 结束画面保持
+        }
+
+        // 页面加载后自动开始
+        window.onload = () => {
+            setTimeout(startAnimation, 500);
+        };
+
+    </script>
+</body>
+</html>

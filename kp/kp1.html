@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3分钟情绪调节：呼吸放松法</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --bg-color-1: #fdfbf7; /* 暖白 */
+            --bg-color-2: #e3f2fd; /* 淡蓝 */
+            --accent-color: #81d4fa; /* 呼吸球核心色 */
+            --text-main: #37474f; /* 深灰蓝 */
+            --text-sub: #78909c; /* 浅灰蓝 */
+            --inhale-color: #4db6ac; /* 吸气：青绿 (平静) */
+            --hold-color: #7986cb;   /* 屏息：靛蓝 (沉稳) */
+            --exhale-color: #90a4ae; /* 呼气：灰蓝 (释放) */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-color-1) 0%, var(--bg-color-2) 100%);
+            font-family: 'Playfair Display', 'Noto Sans SC', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 电影感容器 */
+        #cinema-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1920px;
+            max-height: 1080px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 100px rgba(0,0,0,0.05);
+        }
+
+        /* 背景漂浮粒子 */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(129, 212, 250, 0.2);
+            animation: floatUp infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            20% { opacity: 0.5; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* 中央呼吸球体系统 */
+        .orb-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* 主光球 */
+        .orb {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, var(--accent-color));
+            box-shadow: 0 0 60px rgba(129, 212, 250, 0.6), inset 0 0 20px rgba(255,255,255,0.8);
+            position: absolute;
+            transition: all 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform: scale(1);
+            opacity: 0; /* 初始隐藏 */
+        }
+
+        /* 外部涟漪圈 - 用于视觉辅助 */
+        .ripple {
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        /* 文字容器 */
+        .text-overlay {
+            position: absolute;
+            bottom: 15%;
+            width: 80%;
+            text-align: center;
+            z-index: 20;
+            transition: opacity 0.8s ease;
+        }
+
+        .title-main {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* 进度指示器 (顶部细条) */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--inhale-color), var(--hold-color), var(--exhale-color));
+            width: 0%;
+            z-index: 100;
+            transition: width 0.5s linear;
+        }
+
+        /* 状态文字 (呼吸球中心) */
+        .state-text {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #fff;
+            z-index: 12;
+            opacity: 0;
+            font-weight: 400;
+            pointer-events: none;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* 动画状态类 */
+        .orb.visible { opacity: 1; }
+        
+        /* 4-7-8 呼吸动画逻辑 */
+        /* 吸气：变大，颜色变青 */
+        .orb.inhale {
+            transform: scale(2.5);
+            background: radial-gradient(circle at 30% 30%, #fff, var(--inhale-color));
+            box-shadow: 0 0 80px rgba(77, 182, 172, 0.6);
+            transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 4s;
+        }
+
+        /* 屏息：保持，轻微脉动，颜色变靛蓝 */
+        .orb.hold {
+            transform: scale(2.4);
+            background: radial-gradient(circle at 30% 30%, #fff, var(--hold-color));
+            box-shadow: 0 0 50px rgba(121, 134, 203, 0.8);
+            animation: pulse 2s infinite ease-in-out;
+            transition: background 1s;
+        }
+
+        /* 呼气：变小，颜色变灰蓝 */
+        .orb.exhale {
+            transform: scale(1);
+            background: radial-gradient(circle at 30% 30%, #fff, var(--exhale-color));
+            box-shadow: 0 0 30px rgba(144, 164, 174, 0.4);
+            transition: transform 8s cubic-bezier(0.45, 0.05, 0.55, 0.95), background 8s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(2.4); }
+            50% { transform: scale(2.45); }
+            100% { transform: scale(2.4); }
+        }
+
+        /* 辅助圆环动画 */
+        .guiding-ring {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .guiding-ring.active {
+            animation: ringExpand 2s infinite;
+        }
+
+        @keyframes ringExpand {
+            0% { transform: scale(1); opacity: 0.6; border-color: var(--inhale-color); }
+            100% { transform: scale(2.8); opacity: 0; border-color: var(--exhale-color); }
+        }
+
+        /* 模糊遮罩，用于转场 */
+        #blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            opacity: 1;
+            transition: opacity 2s ease;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .intro-logo {
+            font-size: 3rem;
+            color: var(--text-main);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="cinema-container">
+        <!-- 背景粒子层 -->
+        <div id="particles-js"></div>
+
+        <!-- 顶部进度条 -->
+        <div class="progress-bar" id="progress-bar"></div>
+
+        <!-- 中央视觉层 -->
+        <div class="orb-container">
+            <div class="guiding-ring" id="ring"></div>
+            <div class="orb" id="orb"></div>
+            <div class="state-text" id="state-text"></div>
+        </div>
+
+        <!-- 字幕层 -->
+        <div class="text-overlay" id="text-overlay">
+            <div class="title-main" id="title-cn"></div>
+            <div class="subtitle" id="title-en"></div>
+        </div>
+
+        <!-- 开场遮罩 -->
+        <div id="blur-overlay">
+            <div class="intro-logo" id="intro-logo">Mindful Breath</div>
+        </div>
+    </div>
+
+    <script>
+        // 初始化粒子背景
+        const particleContainer = document.getElementById('particles-js');
+        for(let i=0; i<30; i++) {
+            let p = document.createElement('div');
+            p.className = 'particle';
+            let size = Math.random() * 20 + 10;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            p.style.animationDelay = (Math.random() * 5) + 's';
+            particleContainer.appendChild(p);
+        }
+
+        // 剧本数据
+        const script = [
+            // 开场介绍
+            { type: 'intro', cn: "你好，欢迎来到情绪调节空间。", en: "Hello, welcome to your emotional regulation space.", duration: 4000 },
+            { type: 'intro', cn: "当你感到焦虑或压力时，呼吸是最好的解药。", en: "When you feel anxious or stressed, breath is the best antidote.", duration: 4500 },
+            { type: 'intro', cn: "我们将使用「4-7-8 呼吸法」来平复神经系统。", en: "We will use the '4-7-8 Breathing Technique' to calm your nervous system.", duration: 5000 },
+            { type: 'intro', cn: "请找一个舒适的姿势坐下，放松肩膀。", en: "Please sit comfortably and relax your shoulders.", duration: 4000 },
+            
+            // 教学阶段
+            { type: 'teach', cn: "规则很简单：鼻吸气4秒，屏息7秒，嘴呼气8秒。", en: "The rule is simple: Inhale 4s, Hold 7s, Exhale 8s.", duration: 5000 },
+            { type: 'teach', cn: "准备好了吗？跟随光球的节奏。", en: "Are you ready? Follow the rhythm of the light.", duration: 3000 },
+
+            // 循环 1
+            { type: 'breath', phase: 'inhale', cn: "用鼻子深深吸气...", en: "Inhale deeply through your nose...", duration: 4000 },
+            { type: 'breath', phase: 'hold', cn: "屏住呼吸，感受静止。", en: "Hold your breath, feel the stillness.", duration: 7000 },
+            { type: 'breath', phase: 'exhale', cn: "用嘴缓慢呼气，像吹蜡烛一样。", en: "Exhale slowly through your mouth, like blowing out a candle.", duration: 8000 },
+
+            // 循环 2
+            { type: 'breath', phase: 'inhale', cn: "再次吸气，吸入平静。", en: "Inhale again, breathing in calmness.", duration: 4000 },
+            { type: 'breath', phase: 'hold', cn: "保持... 让氧气滋养你的身体。", en: "Hold... let oxygen nourish your body.", duration: 7000 },
+            { type: 'breath', phase: 'exhale', cn: "呼气，释放所有的压力。", en: "Exhale, releasing all the tension.", duration: 8000 },
+
+            // 循环 3 (少一点文字，多一点感受)
+            { type: 'breath', phase: 'inhale', cn: "吸气 (4秒)", en: "Inhale (4s)", duration: 4000 },
+            { type: 'breath', phase: 'hold', cn: "屏息 (7秒)", en: "Hold (7s)", duration: 7000 },
+            { type: 'breath', phase: 'exhale', cn: "彻底呼气 (8秒)", en: "Exhale completely (8s)", duration: 8000 },
+
+            // 结束
+            { type: 'outro', cn: "做得很好。", en: "Great job.", duration: 3000 },
+            { type: 'outro', cn: "感受一下现在的状态，是否更平静了？", en: "Notice how you feel now. Is it calmer?", duration: 4000 },
+            { type: 'outro', cn: "愿你拥有宁静的一天。", en: "Wishing you a peaceful day.", duration: 5000 }
+        ];
+
+        // DOM 元素
+        const orb = document.getElementById('orb');
+        const ring = document.getElementById('ring');
+        const titleCn = document.getElementById('title-cn');
+        const titleEn = document.getElementById('title-en');
+        const stateText = document.getElementById('state-text');
+        const overlay = document.getElementById('blur-overlay');
+        const introLogo = document.getElementById('intro-logo');
+        const progressBar = document.getElementById('progress-bar');
+
+        let totalDuration = script.reduce((acc, curr) => acc + curr.duration, 0);
+        let currentProgress = 0;
+
+        // 播放控制函数
+        function playSequence(index) {
+            if (index >= script.length) return;
+
+            const item = script[index];
+            
+            // 更新字幕
+            updateText(item.cn, item.en);
+
+            // 更新进度条
+            updateProgress(item.duration);
+
+            // 处理视觉逻辑
+            if (item.type === 'intro' || item.type === 'teach' || item.type === 'outro') {
+                resetOrb();
+                if(item.type === 'outro') orb.style.opacity = 0; // 结束时淡出
+                else orb.style.opacity = 0.5; // 讲解时半透明
+                
+                stateText.style.opacity = 0;
+                ring.classList.remove('active');
+            } 
+            else if (item.type === 'breath') {
+                orb.style.opacity = 1;
+                handleBreath(item.phase, item.duration);
+            }
+
+            // 递归调用下一帧
+            setTimeout(() => {
+                playSequence(index + 1);
+            }, item.duration);
+        }
+
+        function updateText(cn, en) {
+            // 文字淡出
+            titleCn.style.opacity = 0;
+            titleEn.style.opacity = 0;
+
+            setTimeout(() => {
+                titleCn.textContent = cn;
+                titleEn.textContent = en;
+                // 文字淡入
+                titleCn.style.opacity = 1;
+                titleEn.style.opacity = 1;
+            }, 500);
+        }
+
+        function updateProgress(duration) {
+            currentProgress += duration;
+            let percentage = (currentProgress / totalDuration) * 100;
+            progressBar.style.width = percentage + "%";
+        }
+
+        function handleBreath(phase, duration) {
+            // 清除之前的类
+            orb.classList.remove('inhale', 'hold', 'exhale');
+            
+            // 强制重绘以触发动画重置
+            void orb.offsetWidth;
+
+            // 添加新类
+            orb.classList.add(phase);
+
+            // 中心文字倒计时逻辑
+            let seconds = duration / 1000;
+            stateText.style.opacity = 1;
+            stateText.textContent = seconds;
+            
+            let counter = setInterval(() => {
+                seconds--;
+                if(seconds > 0) {
+                    stateText.textContent = seconds;
+                } else {
+                    clearInterval(counter);
+                    stateText.style.opacity = 0;
+                }
+            }, 1000);
+
+            // 辅助环逻辑
+            if(phase === 'inhale') {
+                ring.classList.add('active');
+            } else {
+                ring.classList.remove('active');
+            }
+        }
+
+        function resetOrb() {
+            orb.classList.remove('inhale', 'hold', 'exhale');
+            orb.style.transform = "scale(1)";
+        }
+
+        // 启动程序
+        window.onload = () => {
+            // 1. 开场 Logo 动画
+            introLogo.style.opacity = 1;
+            introLogo.style.transform = "translateY(0)";
+
+            // 2. 2秒后移除遮罩并开始播放
+            setTimeout(() => {
+                overlay.style.opacity = 0;
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    playSequence(0); // 开始播放剧本
+                }, 2000);
+            }, 2500);
+        };
+
+    </script>
+</body>
+</html>

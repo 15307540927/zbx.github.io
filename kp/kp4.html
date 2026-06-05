@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建立自信：5分钟自我肯定练习</title>
+    <style>
+        /* --- 基础重置与字体 --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #1a1a1a; /* 剧院背景 */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            overflow: hidden;
+        }
+
+        /* --- 舞台容器 (16:9) --- */
+        #cinema-container {
+            width: 90vw;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            background: #fdfbf7; /* 米白色画布 */
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 胶片颗粒质感遮罩 --- */
+        .grain-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* --- 动画舞台区域 (占据上方 80%) --- */
+        #stage {
+            flex: 1;
+            position: relative;
+            perspective: 1000px;
+            overflow: hidden;
+            transition: background 1s ease;
+        }
+
+        /* --- 字幕区域 (占据下方 20%) --- */
+        #subtitle-area {
+            height: 18%;
+            background: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 100;
+            position: relative;
+        }
+
+        .sub-en {
+            font-family: 'Georgia', serif;
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.8s ease;
+            text-align: center;
+        }
+
+        .sub-cn {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.8s ease 0.1s; /* 稍微滞后 */
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .sub-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 进度条 --- */
+        #progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: #e67e22; /* 活力橙 */
+            width: 0%;
+            transition: width 0.1s linear;
+            z-index: 101;
+        }
+
+        /* ================= 视觉元素与动画 ================= */
+
+        /* 1. 主角 (几何小人) */
+        .character {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .head {
+            width: 50px;
+            height: 50px;
+            background: #bdc3c7; /* 初始灰色 */
+            border-radius: 50%;
+            margin-bottom: -5px;
+            z-index: 2;
+            transition: all 1.5s ease;
+        }
+
+        .body {
+            width: 70px;
+            height: 90px;
+            background: #95a5a6; /* 初始灰色 */
+            border-radius: 40% 40% 10% 10%;
+            transform-origin: bottom center;
+            transform: scaleY(0.9); /* 初始畏缩 */
+            transition: all 1.5s ease;
+        }
+
+        /* 2. 场景元素：乌云与雨 */
+        .cloud-group {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .cloud {
+            width: 150px;
+            height: 60px;
+            background: #ecf0f1;
+            border-radius: 50px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .cloud::after {
+            content: ''; position: absolute; top: -30px; left: 20px;
+            width: 60px; height: 60px; background: #ecf0f1; border-radius: 50%;
+        }
+        .rain {
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: #3498db;
+            top: 60px;
+            animation: rainDrop 1s infinite linear;
+        }
+
+        /* 3. 场景元素：镜子 */
+        .mirror-frame {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 160px;
+            height: 240px;
+            border: 8px solid #d35400;
+            border-radius: 60px 60px 0 0;
+            background: rgba(255,255,255,0.3);
+            opacity: 0;
+            transition: all 1s ease;
+            z-index: 0; /* 在人后面 */
+        }
+
+        /* 4. 场景元素：浮动文字 (肯定语) */
+        .affirmation-text {
+            position: absolute;
+            font-family: 'Georgia', serif;
+            font-size: 1.5rem;
+            color: #27ae60;
+            font-weight: bold;
+            opacity: 0;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.8);
+        }
+
+        /* 5. 场景元素：光芒 */
+        .aura {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(241, 196, 15, 0.4) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 2s;
+            z-index: -1;
+        }
+
+        /* 6. 场景元素：时钟/循环 */
+        .clock-circle {
+            position: absolute;
+            top: 25%; right: 20%;
+            width: 80px; height: 80px;
+            border: 4px solid #e67e22;
+            border-radius: 50%;
+            opacity: 0;
+        }
+        .clock-hand {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 2px; height: 30px;
+            background: #e67e22;
+            transform-origin: bottom center;
+            transform: translateX(-50%) translateY(-100%);
+        }
+
+        /* ================= 场景状态类 (通过JS切换) ================= */
+
+        /* 场景1: 迷茫 */
+        .scene-doubt .character .head { background: #7f8c8d; transform: translateY(10px); }
+        .scene-doubt .character .body { background: #95a5a6; transform: scaleY(0.85); border-radius: 45% 45% 15% 15%; }
+        .scene-doubt .cloud-group { opacity: 1; }
+        .scene-doubt #stage { background: #f0f2f5; }
+
+        /* 场景2: 觉醒/镜子 */
+        .scene-mirror .mirror-frame { opacity: 1; transform: translateX(-50%) scale(1); }
+        .scene-mirror .character .head { background: #f1c40f; transform: translateY(0); } /* 变黄 */
+        .scene-mirror .character .body { background: #f39c12; transform: scaleY(1); } /* 挺胸 */
+        .scene-mirror #stage { background: #fffbf0; }
+
+        /* 场景3: 能量爆发 */
+        .scene-bloom .aura { opacity: 1; animation: pulse 3s infinite; }
+        .scene-bloom .character { transform: translateX(-50%) scale(1.1); }
+        .scene-bloom .character .head { box-shadow: 0 0 20px #f1c40f; }
+        .scene-bloom #stage { background: #ecf9f1; } /* 变绿意 */
+
+        /* 场景4: 坚持 */
+        .scene-habit .clock-circle { opacity: 1; transition: opacity 1s; }
+        .scene-habit .clock-hand { animation: spin 1s linear infinite; }
+
+        /* ================= 关键帧动画 ================= */
+        @keyframes rainDrop {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(20px); opacity: 0; }
+        }
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        }
+        @keyframes spin {
+            100% { transform: translateX(-50%) translateY(-100%) rotate(360deg); }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(20px) scale(0.8); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+        }
+
+        /* 装饰性背景圆 */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 0;
+            opacity: 0.6;
+            transition: all 2s ease;
+        }
+        .shape-1 { width: 300px; height: 300px; background: #ffeaa7; top: -50px; left: -50px; }
+        .shape-2 { width: 200px; height: 200px; background: #81ecec; bottom: 50px; right: -50px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="cinema-container">
+        <div class="grain-overlay"></div>
+        
+        <!-- 舞台区 -->
+        <div id="stage">
+            <!-- 背景装饰 -->
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-2"></div>
+
+            <!-- 场景元素：云朵 -->
+            <div class="cloud-group">
+                <div class="cloud"></div>
+                <div class="rain" style="left: 30px; animation-delay: 0s;"></div>
+                <div class="rain" style="left: 70px; animation-delay: 0.3s;"></div>
+                <div class="rain" style="left: 110px; animation-delay: 0.6s;"></div>
+            </div>
+
+            <!-- 场景元素：光环 -->
+            <div class="aura"></div>
+
+            <!-- 场景元素：镜子 -->
+            <div class="mirror-frame"></div>
+
+            <!-- 场景元素：时钟 -->
+            <div class="clock-circle">
+                <div class="clock-hand"></div>
+            </div>
+
+            <!-- 主角 -->
+            <div class="character">
+                <div class="head"></div>
+                <div class="body"></div>
+            </div>
+        </div>
+
+        <!-- 字幕区 -->
+        <div id="subtitle-area">
+            <div class="sub-en" id="sub-en"></div>
+            <div class="sub-cn" id="sub-cn"></div>
+        </div>
+
+        <!-- 进度条 -->
+        <div id="progress-bar"></div>
+    </div>
+
+    <script>
+        // 剧本数据：包含时间（毫秒）、英文、中文、场景类名、特殊动作
+        const script = [
+            {
+                duration: 4000,
+                en: "Do you ever feel small, grey, or full of doubt?",
+                cn: "你是否曾感到渺小、灰暗，或充满自我怀疑？",
+                sceneClass: "scene-doubt"
+            },
+            {
+                duration: 4000,
+                en: "Confidence isn't magic. It starts with a seed.",
+                cn: "自信不是魔法。它始于一颗种子。",
+                sceneClass: "scene-doubt" // 保持上一状态，但在JS中会微调
+            },
+            {
+                duration: 5000,
+                en: "The practice is simple: The Mirror Technique.",
+                cn: "练习非常简单：试着面对镜子。",
+                sceneClass: "scene-mirror"
+            },
+            {
+                duration: 5000,
+                en: "Look into your eyes. Speak clearly: 'I am enough.'",
+                cn: "看着自己的眼睛。清晰地说出来：“我已足够好。”",
+                sceneClass: "scene-mirror",
+                action: "floatWords1"
+            },
+            {
+                duration: 5000,
+                en: "Your brain listens. Neuroplasticity rewires your thoughts.",
+                cn: "你的大脑在倾听。神经可塑性正在重塑你的思维回路。",
+                sceneClass: "scene-bloom",
+                action: "floatWords2"
+            },
+            {
+                duration: 4000,
+                en: "Just 5 minutes a day. Consistency is key.",
+                cn: "每天只需5分钟。坚持是关键。",
+                sceneClass: "scene-habit"
+            },
+            {
+                duration: 5000,
+                en: "Water your soul daily, and watch yourself bloom.",
+                cn: "每天滋养心灵，看着自己绽放光芒。",
+                sceneClass: "scene-bloom" // 回到盛开状态
+            }
+        ];
+
+        const stage = document.getElementById('stage');
+        const subEn = document.getElementById('sub-en');
+        const subCn = document.getElementById('sub-cn');
+        const progressBar = document.getElementById('progress-bar');
+        
+        let currentStep = 0;
+        let totalDuration = script.reduce((acc, cur) => acc + cur.duration, 0);
+        let elapsedTime = 0;
+
+        // 浮动文字生成器
+        function spawnFloatingText(text, color) {
+            const el = document.createElement('div');
+            el.className = 'affirmation-text';
+            el.innerText = text;
+            el.style.color = color;
+            // 随机位置
+            el.style.left = (30 + Math.random() * 40) + '%'; 
+            el.style.bottom = '40%';
+            el.style.animation = `floatUp 2s ease-out forwards`;
+            stage.appendChild(el);
+            
+            setTimeout(() => el.remove(), 2000);
+        }
+
+        function playScene() {
+            if (currentStep >= script.length) {
+                // 播放结束，重置或停止
+                return;
+            }
+
+            const sceneData = script[currentStep];
+
+            // 1. 更新字幕
+            subEn.classList.remove('sub-active');
+            subCn.classList.remove('sub-active');
+            
+            setTimeout(() => {
+                subEn.innerText = sceneData.en;
+                subCn.innerText = sceneData.cn;
+                subEn.classList.add('sub-active');
+                subCn.classList.add('sub-active');
+            }, 400); // 字幕切换缓冲
+
+            // 2. 更新场景视觉类名
+            // 先移除所有旧的scene类
+            stage.classList.remove('scene-doubt', 'scene-mirror', 'scene-bloom', 'scene-habit');
+            // 添加新类
+            if (sceneData.sceneClass) {
+                stage.classList.add(sceneData.sceneClass);
+            }
+
+            // 3. 处理特殊动作
+            if (sceneData.action === "floatWords1") {
+                let count = 0;
+                const interval = setInterval(() => {
+                    const words = ["I am enough", "I am worthy", "I can"];
+                    spawnFloatingText(words[count % words.length], "#e67e22");
+                    count++;
+                    if(count > 3) clearInterval(interval);
+                }, 800);
+            }
+            if (sceneData.action === "floatWords2") {
+                let count = 0;
+                const interval = setInterval(() => {
+                    const words = ["Strong", "Capable", "Growing"];
+                    spawnFloatingText(words[count % words.length], "#27ae60");
+                    count++;
+                    if(count > 4) clearInterval(interval);
+                }, 600);
+            }
+
+            // 4. 递归调用下一步
+            setTimeout(() => {
+                currentStep++;
+                playScene();
+            }, sceneData.duration);
+        }
+
+        // 进度条逻辑
+        function updateProgress() {
+            const interval = 100; // ms
+            const timer = setInterval(() => {
+                elapsedTime += interval;
+                const percent = Math.min((elapsedTime / totalDuration) * 100, 100);
+                progressBar.style.width = percent + "%";
+                
+                if (elapsedTime >= totalDuration) clearInterval(timer);
+            }, interval);
+        }
+
+        // 启动
+        window.onload = () => {
+            // 稍微延迟一点启动，确保渲染完成
+            setTimeout(() => {
+                playScene();
+                updateProgress();
+            }, 500);
+        };
+
+    </script>
+</body>
+</html>

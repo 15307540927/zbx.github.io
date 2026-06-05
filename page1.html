@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵“易”站 - 心理科普专区</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            orange: '#F97316', // 主暖橙
+                            pink: '#F87171',   // 暖粉
+                            yellow: '#FBBF24', // 暖黄
+                            beige: '#F5F5F4',  // 暖米色
+                            brown: '#92400E',  // 暖棕
+                            red: '#EF4444',    // 暖红
+                            peach: '#FF9F43',  // 蜜桃橙（新增暖色系）
+                            amber: '#F59E0B',  // 琥珀黄（新增暖色系）
+                            tan: '#D19669',    // 浅棕（新增暖色系）
+                            science: '#F97316' // 科普主题色改为暖橙（统一暖色系）
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-science-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F9731610' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .nav-link {
+                @apply relative px-4 py-2 text-gray-700 hover:text-warm-orange transition;
+            }
+            .nav-link::after {
+                @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-warm-orange transition-all duration-300 -translate-x-1/2;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .science-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg border-b-4;
+            }
+            .article-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg flex flex-col h-full;
+            }
+            .video-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg;
+            }
+        }
+    </style>
+</head>
+<body class="bg-warm-beige bg-science-pattern min-h-screen">
+    <!-- 导航栏 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <!-- 品牌标识 -->
+            <div class="flex items-center">
+                <i class="fa fa-heart text-warm-orange text-2xl mr-2"></i>
+                <span class="text-xl font-bold text-warm-brown">心灵“易”站</span>
+            </div>
+
+            <!-- 导航菜单 - 桌面版 -->
+            <nav class="hidden md:flex items-center space-x-2">
+                <a href="home.html" class="nav-link"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="nav-link"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="nav-link text-warm-orange font-medium"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="nav-link"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="nav-link"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="nav-link"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="nav-link"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </nav>
+
+            <!-- 用户信息 -->
+            <div class="flex items-center">
+                <div class="mr-4 hidden md:block">
+                    <span id="userName" class="text-warm-brown"></span>
+                </div>
+                <button id="logoutBtn" class="bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-lg hover:bg-warm-orange/20 transition">
+                    <i class="fa fa-sign-out mr-1"></i> 退出
+                </button>
+
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="ml-4 md:hidden text-gray-700 text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-1">
+                <a href="home.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
+                <a href="page1.html" class="px-4 py-2 text-warm-orange font-medium"><i class="fa fa-book mr-1"></i> 心理科普</a>
+                <a href="page2.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
+                <a href="page5.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+            </div>
+        </div>
+    </header>
+
+     <section class="relative py-12">
+        <img src="./image/5.jpg" alt="心理健康科普专区" class="absolute inset-0 w-full h-full object-cover">
+       
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4 text-warm-brown">心理健康科普专区手</h1>
+            <p class="text-lg max-w-2xl mx-auto mb-6 text-gray-700">用科学的心理知识，守护你的校园成长，让心理健康触手可及</p>
+            <a href="#study-methods" class="bg-warm-orange text-white px-6 py-3 rounded-lg hover:bg-warm-orange/90 transition inline-flex items-center">
+                <i class="fa fa-graduation-cap mr-2"></i> 探索科普知识
+            </a>
+        </div>
+    </section>
+
+    <!-- 科普分类板块（全暖色系调整） -->
+    <section class="container mx-auto px-4 py-12" id="science-categories">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">热门科普分类</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 情绪管理（暖粉） -->
+            <div class="science-card border-warm-pink">
+                <div class="h-40 bg-warm-pink/10 flex items-center justify-center">
+                    <i class="fa fa-smile-o text-6xl text-warm-pink"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-pink mb-3">情绪管理</h3>
+                    <p class="text-gray-600 text-sm mb-4">学习识别、表达和调节情绪的方法，告别焦虑、愤怒、抑郁等负面情绪困扰</p>
+                    <a href="https://www.bilibili.com/video/BV1YM9gYdECb/?buvid=XUF69DAF6BCFDE6526D0036877D90A4B76593&from_spmid=__FROMSPMID__&is_story_h5=false&mid=%2FcFlwht7FpUQZbXFocOK3Q%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=android&share_plat=android&share_session_id=57d09e43-d00e-4465-b489-e64e1c4ac655&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1765029046&unique_k=fg1iMVK&up_id=593251783" class="text-warm-pink hover:text-warm-pink/80 flex items-center">
+                        查看相关科普 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 压力应对（暖黄） -->
+            <div class="science-card border-warm-yellow">
+                <div class="h-40 bg-warm-yellow/10 flex items-center justify-center">
+                    <i class="fa fa-balance-scale text-6xl text-warm-yellow"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-yellow mb-3">压力应对</h3>
+                    <p class="text-gray-600 text-sm mb-4">掌握科学的减压方法，应对学业、考试、升学等校园压力，保持心理平衡</p>
+                    <a href="https://www.bilibili.com/video/BV1tE411T7wr?buvid=XUF69DAF6BCFDE6526D0036877D90A4B76593&from_spmid=search.search-result.0.0&is_story_h5=false&mid=%2FcFlwht7FpUQZbXFocOK3Q%3D%3D&plat_id=114&share_from=ugc&share_medium=android&share_plat=android&share_session_id=18dd92d5-5eb8-4435-9745-c3ca483ab0d2&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1765029130&unique_k=oW7bk0F&up_id=410657522" class="text-warm-yellow hover:text-warm-yellow/80 flex items-center">
+                        查看相关科普 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 人际交往（暖橙） -->
+            <div class="science-card border-warm-orange">
+                <div class="h-40 bg-warm-orange/10 flex items-center justify-center">
+                    <i class="fa fa-handshake-o text-6xl text-warm-orange"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-orange mb-3">人际交往</h3>
+                    <p class="text-gray-600 text-sm mb-4">提升沟通能力，处理同学、师生、亲子关系，建立健康的人际支持网络</p>
+                    <a href="https://www.bilibili.com/video/BV1tE411T7wr?buvid=XUF69DAF6BCFDE6526D0036877D90A4B76593&from_spmid=search.search-result.0.0&is_story_h5=false&mid=%2FcFlwht7FpUQZbXFocOK3Q%3D%3D&plat_id=114&share_from=ugc&share_medium=android&share_plat=android&share_session_id=18dd92d5-5eb8-4435-9745-c3ca483ab0d2&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1765029130&unique_k=oW7bk0F&up_id=410657522" class="text-warm-orange hover:text-warm-orange/80 flex items-center">
+                        查看相关科普 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 自我成长（琥珀黄） -->
+            <div class="science-card border-warm-amber">
+                <div class="h-40 bg-warm-amber/10 flex items-center justify-center">
+                    <i class="fa fa-child text-6xl text-warm-amber"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-amber mb-3">自我成长</h3>
+                    <p class="text-gray-600 text-sm mb-4">建立积极的自我认知，提升自信心，明确成长目标，实现自我价值</p>
+                    <a href="https://www.bilibili.com/video/BV1nyzxYjEvw/?buvid=XUF69DAF6BCFDE6526D0036877D90A4B76593&from_spmid=search.search-result.0.0&is_story_h5=false&mid=%2FcFlwht7FpUQZbXFocOK3Q%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=android&share_plat=android&share_session_id=02f4c5c2-8de9-4c84-bb85-6ac4a90d3cf6&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1765029618&unique_k=6Kh9dNa&up_id=1845555757" class="text-warm-amber hover:text-warm-amber/80 flex items-center">
+                        查看相关科普 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 亲子沟通（暖棕） -->
+            <div class="science-card border-warm-brown">
+                <div class="h-40 bg-warm-brown/10 flex items-center justify-center">
+                    <i class="fa fa-home text-6xl text-warm-brown"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-brown mb-3">亲子沟通</h3>
+                    <p class="text-gray-600 text-sm mb-4">改善与父母的沟通方式，化解亲子矛盾，构建和谐的家庭心理环境</p>
+                    <a href="https://www.bilibili.com/video/BV1Qa4y1H7Ds/?buvid=XUF69DAF6BCFDE6526D0036877D90A4B76593&from_spmid=search.search-result.0.0&is_story_h5=false&mid=%2FcFlwht7FpUQZbXFocOK3Q%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=android&share_plat=android&share_session_id=948342d9-9817-4210-8060-64dfc0ea985a&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1765029680&unique_k=jw9Xrgz&up_id=393436679" class="text-warm-brown hover:text-warm-brown/80 flex items-center">
+                        查看相关科普 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 校园心理（浅棕） -->
+            <div class="science-card border-warm-tan">
+                <div class="h-40 bg-warm-tan/10 flex items-center justify-center">
+                    <i class="fa fa-university text-6xl text-warm-tan"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-warm-tan mb-3">校园心理</h3>
+                    <p class="text-gray-600 text-sm mb-4">应对校园欺凌、适应新环境、处理学业竞争，打造健康的校园心理状态</p>
+                    <a href="https://www.bilibili.com/video/BV1jM4y1J7pf?buvid=XUF69DAF6BCFDE6526D0036877D90A4B76593&from_spmid=search.search-result.0.0&is_story_h5=false&mid=%2FcFlwht7FpUQZbXFocOK3Q%3D%3D&plat_id=114&share_from=ugc&share_medium=android&share_plat=android&share_session_id=2824874d-5fd0-455a-abbd-b258926ee48d&share_source=WEIXIN&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1765030063&unique_k=l4qqTgP&up_id=1665091797" class="text-warm-tan hover:text-warm-tan/80 flex items-center">
+                        查看相关科普 <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 热门科普文章（暖色系调整） -->
+    <section class="container mx-auto px-4 py-12 bg-white/50 rounded-xl my-8">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">热门科普文章</h2>
+        
+        <!-- 情绪管理文章（暖粉） -->
+        <div id="emotion-articles" class="mb-12">
+            <h3 class="text-xl font-semibold text-warm-pink mb-6 border-b border-warm-pink/20 pb-2">情绪管理专栏</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="article-card">
+                    <div class="h-48 bg-warm-pink/10">
+                        <img src="./image/kp1-1.png" alt="情绪识别" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-lg font-semibold mb-2">【科普】青少年情绪自我管理指南</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">青少年情绪波动是青春期的正常现象，学会科学管理情绪有助于健康成长，以下是简单方便的自我调节方法，在家在校都能实践...</p>
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <span><i class="fa fa-eye mr-1"></i> 2.3k阅读</span>
+                            <span><i class="fa fa-calendar mr-1"></i> 2025-01-15</span>
+                            <a href="https://mp.weixin.qq.com/s/t5AFhf9dmKyRS5RBieX2-Q" class="text-warm-pink hover:text-warm-pink/80">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="h-48 bg-warm-pink/10">
+                        <img src="./image/kp1-2.jpg" alt="情绪调节" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-lg font-semibold mb-2">告别坏情绪！6个实用宣泄方法</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">情绪是人对客观事物的态度体验及相应的行为反应，我们每个人都有快乐、愤怒、恐惧、悲哀情绪...</p>
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <span><i class="fa fa-eye mr-1"></i> 1.8k阅读</span>
+                            <span><i class="fa fa-calendar mr-1"></i> 2025-02-08</span>
+                            <a href="https://mp.weixin.qq.com/s/ouCd4OlosZ_zIX5MJEy3dA" class="text-warm-pink hover:text-warm-pink/80">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="h-48 bg-warm-pink/10">
+                        <img src="./image/kp1-3.jpg" alt="抑郁情绪" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-lg font-semibold mb-2">“心情不好”≠“抑郁症”——教你区分抑郁情绪和抑郁症</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">在心理门诊，经常听到这样的问题：“医生，我最近心情很差，对什么都提不起兴趣，我是不是得抑郁症了...</p>
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <span><i class="fa fa-eye mr-1"></i> 3.5k阅读</span>
+                            <span><i class="fa fa-calendar mr-1"></i> 2025-01-28</span>
+                            <a href="https://mp.weixin.qq.com/s/xnwHtuAytuuMxO-LVj8UtA" class="text-warm-pink hover:text-warm-pink/80">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 压力应对文章（暖黄） -->
+        <div id="stress-articles" class="mb-12">
+            <h3 class="text-xl font-semibold text-warm-yellow mb-6 border-b border-warm-yellow/20 pb-2">压力应对专栏</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="article-card">
+                    <div class="h-48 bg-warm-yellow/10">
+                        <img src="./image/kp2-1.jpg" alt="考试压力" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-lg font-semibold mb-2">【微科普】这份考前焦虑自救攻略，请收下</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">考试是学生时期最大的压力来源，在重要考试前，学生心理紧张产生了强烈焦虑感...</p>
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <span><i class="fa fa-eye mr-1"></i> 4.2k阅读</span>
+                            <span><i class="fa fa-calendar mr-1"></i> 2025-03-05</span>
+                            <a href="https://mp.weixin.qq.com/s/a3PZLf0bszYQnrEvcIXPoA" class="text-warm-yellow hover:text-warm-yellow/80">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="h-48 bg-warm-yellow/10">
+                        <img src="./image/kp2-2.png" alt="学业压力" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-lg font-semibold mb-2">脑科学科普| 吸气，再吸，呼气：只需5分钟，轻松减压，提升情绪</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">假如你想打赌稳赢，告诉别人你一定能猜出他们是否感到有压力，然后押“有压力”就对了。</p>
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <span><i class="fa fa-eye mr-1"></i> 2.9k阅读</span>
+                            <span><i class="fa fa-calendar mr-1"></i> 2025-02-20</span>
+                            <a href="https://mp.weixin.qq.com/s/PtpGZ4mi0fkKD4Lca4BBlQ" class="text-warm-yellow hover:text-warm-yellow/80">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <div class="h-48 bg-warm-yellow/10">
+                        <img src="./image/kp2-3.png" alt="升学压力" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h4 class="text-lg font-semibold mb-2">解码升学焦虑：把变化中的不安变成成长力量</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-1">升学，本就是同学们成长路上不可避免的重要节点，从小学到初中，从初中到高中，再到大学，每一次跨越都意味着新的环境、新的课程、新的同学和新的要求...</p>
+                        <div class="flex justify-between items-center text-gray-500 text-xs">
+                            <span><i class="fa fa-eye mr-1"></i> 3.8k阅读</span>
+                            <span><i class="fa fa-calendar mr-1"></i> 2025-03-12</span>
+                            <a href="https://mp.weixin.qq.com/s/jkmZvQuVebItudLKDR6hGw" class="text-warm-yellow hover:text-warm-yellow/80">阅读全文</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 更多文章入口（暖橙） -->
+        <div class="text-center mt-8">
+            <a href="https://www.xuexi.cn/" class="bg-warm-orange text-white px-6 py-3 rounded-lg hover:bg-warm-orange/90 transition inline-flex items-center">
+                <i class="fa fa-list mr-2"></i> 查看全部科普文章
+            </a>
+        </div>
+    </section>
+
+    <!-- 科普视频专区（暖色系调整） -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">科普视频专区</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="video-card">
+                <div class="relative h-48 bg-warm-orange/10">
+                    <img src="./image/kp3-1.png" alt="情绪管理视频" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <i class="fa fa-play-circle text-white text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">5:28</div>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold mb-2 text-sm">3分钟学会情绪调节：呼吸放松法</h4>
+                    <div class="flex justify-between items-center text-gray-500 text-xs">
+                        <span><i class="fa fa-play mr-1"></i> 1.5万播放</span>
+                        <a href="./kp/kp1.html" class="text-warm-orange hover:text-warm-orange/80">观看视频</a>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="relative h-48 bg-warm-orange/10">
+                    <img src="./image/kp3-2.png" alt="人际交往视频" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <i class="fa fa-play-circle text-white text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">7:15</div>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold mb-2 text-sm">如何和同学友好相处：沟通小技巧</h4>
+                    <div class="flex justify-between items-center text-gray-500 text-xs">
+                        <span><i class="fa fa-play mr-1"></i> 2.1万播放</span>
+                        <a href="./kp/kp2.html" class="text-warm-orange hover:text-warm-orange/80">观看视频</a>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="relative h-48 bg-warm-orange/10">
+                    <img src="./image/kp3-4.png" alt="压力应对视频" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <i class="fa fa-play-circle text-white text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">6:42</div>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold mb-2 text-sm">考试前睡不着？试试这些小方法</h4>
+                    <div class="flex justify-between items-center text-gray-500 text-xs">
+                        <span><i class="fa fa-play mr-1"></i> 3.2万播放</span>
+                        <a href="./kp/kp3.html" class="text-warm-orange hover:text-warm-orange/80">观看视频</a>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="relative h-48 bg-warm-orange/10">
+                    <img src="./image/kp3-3.png" alt="自我成长视频" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <i class="fa fa-play-circle text-white text-4xl"></i>
+                    </div>
+                    <div class="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">8:10</div>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-semibold mb-2 text-sm">建立自信：每天5分钟自我肯定练习</h4>
+                    <div class="flex justify-between items-center text-gray-500 text-xs">
+                        <span><i class="fa fa-play mr-1"></i> 1.8万播放</span>
+                        <a href="./kp/kp4.html" class="text-warm-orange hover:text-warm-orange/80">观看视频</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 视频更多入口（暖黄） -->
+        <div class="text-center mt-8">
+            <a href="https://www.bilibili.com/?key=matlab%EF%BF%BD%C5%BA%C5%B4%EF%BF%BD%EF%BF%BD%EF%BF%BD&act=input&show=big&show_shop=0&sort_type=sort_pubdate_desc&page_index=4" class="bg-warm-yellow text-white px-6 py-3 rounded-lg hover:bg-warm-yellow/90 transition inline-flex items-center">
+                <i class="fa fa-video-camera mr-2"></i> 查看更多科普视频
+            </a>
+        </div>
+    </section>
+
+    <!-- 心理科普工具（暖色系） -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-warm-brown mb-8 text-center">实用心理科普工具</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-6 shadow-md text-center hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-warm-pink/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-book text-2xl text-warm-pink"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">情绪日记模板</h3>
+                <p class="text-gray-600 text-sm mb-4">记录每日情绪变化，识别情绪规律，提升情绪管理能力</p>
+                <a href="./wd/情绪日记模板.docx" class="text-warm-pink hover:text-warm-pink/80 inline-flex items-center justify-center">
+                    <i class="fa fa-download mr-1"></i> 下载模板
+                </a>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-md text-center hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-warm-yellow/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-music text-2xl text-warm-yellow"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">正念放松音频</h3>
+                <p class="text-gray-600 text-sm mb-4">5-15分钟不等的正念冥想音频，缓解压力，改善睡眠</p>
+                <a href="https://y.qq.com/n/ryqq/playlist/8469194030" class="text-warm-yellow hover:text-warm-yellow/80 inline-flex items-center justify-center">
+                    <i class="fa fa-play mr-1"></i> 收听音频
+                </a>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-md text-center hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-warm-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa fa-file-text-o text-2xl text-warm-orange"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-3">心理科普手册</h3>
+                <p class="text-gray-600 text-sm mb-4">青少年心理健康科普手册，图文并茂，易懂实用</p>
+                <a href="./wd/青少年心理科普实用手册.docx" class="text-warm-orange hover:text-warm-orange/80 inline-flex items-center justify-center">
+                    <i class="fa fa-download mr-1"></i> 下载手册
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 问答展开/收起功能
+        function toggleQa(id) {
+            const content = document.getElementById(`qa-content-${id}`);
+            const icon = document.getElementById(`qa-icon-${id}`);
+            
+            content.classList.toggle('hidden');
+            if (content.classList.contains('hidden')) {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // 显示问答提交表单
+        function showQaForm() {
+            const qaForm = document.getElementById('qa-form');
+            qaForm.classList.toggle('hidden');
+        }
+
+        // 页面加载时获取用户名（示例）
+        window.onload = function() {
+            // 实际应用中这里会从登录状态中获取用户名
+            const userNameElement = document.getElementById('userName');
+            if (userNameElement) {
+                userNameElement.textContent = "访客";
+            }
+        }
+    </script>
+     <footer class="bg-warm-brown text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <i class="fa fa-heart text-warm-yellow text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">心灵“易”站</span>
+                    </div>
+                    <p class="text-white/70 mt-2 text-sm">易班校园心理帮扶平台 © 2025</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-weixin text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-phone text-xl"></i></a>
+                    <a href="#" class="text-white/70 hover:text-white transition"><i class="fa fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-white/50 text-sm">
+                心理援助热线：12356 | 工作时间：周一至周日 08:00-22:00
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

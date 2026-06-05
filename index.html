@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心灵“易”站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        // 自定义暖色系主题
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            orange: '#F97316', // 主暖橙
+                            pink: '#F87171',   // 辅助浅粉
+                            yellow: '#FBBF24', // 点缀暖黄
+                            beige: '#F5F5F4',  // 背景米白
+                            brown: '#92400E',  // 文字深棕
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-psych-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F9731620' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .card-shadow {
+                box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15);
+            }
+        }
+    </style>
+</head>
+<body class="bg-warm-beige min-h-screen flex items-center justify-center p-4 bg-psych-pattern">
+    <!-- 卡片 -->
+    <div class="w-full max-w-md bg-white rounded-2xl p-8 card-shadow">
+        <!-- 标题与易班标识 -->
+        <div class="text-center mb-8">
+            <div class="flex justify-center items-center mb-2">
+                <i class="fa fa-heart text-warm-orange text-4xl mr-3"></i>
+                <span class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-warm-brown">心灵“易”站</span>
+            </div>
+            <p class="text-gray-500">易班校园心理帮扶平台</p>
+            <div class="mt-2 inline-block bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-full text-sm">
+                <i class="fa fa-university mr-1"></i> 易班认证
+            </div>
+        </div>
+
+        <!-- 切换标签 -->
+        <div class="flex justify-center gap-10 mb-6">
+            <button id="tabLogin" class="text-lg font-medium text-warm-orange border-b-2 border-warm-orange px-2">登录</button>
+            <button id="tabReg" class="text-lg font-medium text-gray-400 px-2">注册</button>
+        </div>
+
+        <!-- 登录表单 -->
+        <div id="loginPanel">
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-warm-brown mb-1">账号</label>
+                    <div class="relative">
+                        <i class="fa fa-user absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="loginAccount" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               placeholder="请输入学号/工号" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-warm-brown mb-1">密码</label>
+                    <div class="relative">
+                        <i class="fa fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="loginPwd" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               placeholder="请输入密码" required>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center text-sm text-gray-600">
+                        <input type="checkbox" id="rememberAccount" class="mr-2 text-warm-orange">
+                        记住账号
+                    </label>
+                    <a href="#" class="text-sm text-warm-orange hover:text-warm-brown">忘记密码？</a>
+                </div>
+                <button type="submit" class="w-full bg-warm-orange text-white py-2 rounded-lg hover:bg-warm-orange/90 transition flex justify-center items-center">
+                    <i class="fa fa-sign-in mr-2"></i> 登录
+                </button>
+            </form>
+        </div>
+
+        <!-- 注册表单 -->
+        <div id="regPanel" class="hidden">
+            <form id="registerForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-warm-brown mb-1">学号/工号</label>
+                    <div class="relative">
+                        <i class="fa fa-id-card absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="regAccount" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               placeholder="请输入学号/工号" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-warm-brown mb-1">姓名</label>
+                    <div class="relative">
+                        <i class="fa fa-user-circle absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="regName" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               placeholder="请输入真实姓名" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-warm-brown mb-1">密码</label>
+                    <div class="relative">
+                        <i class="fa fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="regPwd" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               placeholder="请设置密码（6-16位）" required minlength="6" maxlength="16">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-warm-brown mb-1">确认密码</label>
+                    <div class="relative">
+                        <i class="fa fa-lock-open absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="regPwdConfirm" 
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               placeholder="请确认密码" required>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-warm-pink text-white py-2 rounded-lg hover:bg-warm-pink/90 transition flex justify-center items-center">
+                    <i class="fa fa-user-plus mr-2"></i> 注册
+                </button>
+            </form>
+        </div>
+
+        <!-- 底部切换文字 -->
+        <div class="mt-6 text-center text-gray-600 text-sm">
+            <span id="loginTip">还没有账号？<a onclick="showRegister()" class="text-warm-orange hover:text-warm-brown font-medium cursor-pointer">立即注册</a></span>
+            <span id="regTip" class="hidden">已有账号？<a onclick="showLogin()" class="text-warm-orange hover:text-warm-brown font-medium cursor-pointer">立即登录</a></span>
+        </div>
+    </div>
+
+    <script>
+        // 切换面板
+        function showLogin() {
+            document.getElementById('loginPanel').classList.remove('hidden');
+            document.getElementById('regPanel').classList.add('hidden');
+            document.getElementById('tabLogin').classList.add('text-warm-orange','border-b-2','border-warm-orange');
+            document.getElementById('tabReg').classList.remove('text-warm-orange','border-b-2','border-warm-orange');
+            document.getElementById('tabReg').classList.add('text-gray-400');
+            document.getElementById('loginTip').classList.remove('hidden');
+            document.getElementById('regTip').classList.add('hidden');
+        }
+        function showRegister() {
+            document.getElementById('loginPanel').classList.add('hidden');
+            document.getElementById('regPanel').classList.remove('hidden');
+            document.getElementById('tabLogin').classList.remove('text-warm-orange','border-b-2','border-warm-orange');
+            document.getElementById('tabLogin').classList.add('text-gray-400');
+            document.getElementById('tabReg').classList.add('text-warm-orange','border-b-2','border-warm-orange');
+            document.getElementById('loginTip').classList.add('hidden');
+            document.getElementById('regTip').classList.remove('hidden');
+        }
+
+        // 绑定标签点击
+        document.getElementById('tabLogin').onclick = showLogin;
+        document.getElementById('tabReg').onclick = showRegister;
+
+        // 加载记住账号
+        window.addEventListener('DOMContentLoaded', () => {
+            const lastAccount = localStorage.getItem('lastAccount');
+            if (lastAccount) {
+                document.getElementById('loginAccount').value = lastAccount;
+                document.getElementById('rememberAccount').checked = true;
+            }
+        });
+
+        // 登录逻辑
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const account = document.getElementById('loginAccount').value;
+            const pwd = document.getElementById('loginPwd').value;
+            const remember = document.getElementById('rememberAccount').checked;
+            const users = JSON.parse(localStorage.getItem('psychUsers')) || [];
+            const user = users.find(u => u.account === account && u.pwd === pwd);
+            
+            if (user) {
+                remember ? localStorage.setItem('lastAccount', account) : localStorage.removeItem('lastAccount');
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                alert('登录成功！即将跳转到主页');
+                window.location.href = 'home.html';
+            } else {
+                alert('账号或密码错误！');
+            }
+        });
+
+        // 注册逻辑
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const account = document.getElementById('regAccount').value;
+            const name = document.getElementById('regName').value;
+            const pwd = document.getElementById('regPwd').value;
+            const pwdConfirm = document.getElementById('regPwdConfirm').value;
+
+            if (pwd !== pwdConfirm) { alert('两次输入的密码不一致！'); return; }
+            if (pwd.length < 6 || pwd.length > 16) { alert('密码长度必须在6-16位之间！'); return; }
+            
+            const users = JSON.parse(localStorage.getItem('psychUsers')) || [];
+            if (users.some(u => u.account === account)) { alert('该账号已注册！'); return; }
+
+            users.push({ account, name, pwd });
+            localStorage.setItem('psychUsers', JSON.stringify(users));
+            alert('注册成功！即将切换到登录页');
+            showLogin();
+        });
+    </script>
+</body>
+</html>
