@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>心灵“易”站 - 智能心理咨询师</title>
+    <title>心灵“易”站 - 学业压力疏导专家</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -29,7 +29,10 @@
                 background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23F9731610' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
             }
             .nav-link {
-                @apply relative px-4 py-2 text-gray-700 hover:text-warm-orange transition;
+                @apply relative px-4 py-3 text-gray-700 hover:text-warm-orange transition;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
             }
             .nav-link::after {
                 @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-warm-orange transition-all duration-300 -translate-x-1/2;
@@ -59,9 +62,10 @@
             <!-- 导航菜单 - 桌面版 -->
             <nav class="hidden md:flex items-center space-x-2">
                 <a href="home.html" class="nav-link"><i class="fa fa-home mr-1"></i> 首页</a>
+                <a href="音疗所.html" class="nav-link"><i class="fa fa-music mr-1"></i> 音符疗愈所</a>
                 <a href="page1.html" class="nav-link"><i class="fa fa-book mr-1"></i> 心理科普</a>
-                <a href="page2.html" class="nav-link"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
-                <a href="page3.html" class="nav-link text-warm-orange font-medium"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
+                <a href="page2.html" class="nav-link text-warm-orange font-medium"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
+                <a href="page3.html" class="nav-link"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
                 <a href="page4.html" class="nav-link"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
                 <a href="page5.html" class="nav-link"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
             </nav>
@@ -71,12 +75,12 @@
                 <div class="mr-4 hidden md:block">
                     <span id="userName" class="text-warm-brown"></span>
                 </div>
-                <button id="logoutBtn" class="bg-warm-orange/10 text-warm-orange px-3 py-1 rounded-lg hover:bg-warm-orange/20 transition">
+                <button id="logoutBtn" class="bg-warm-orange/10 text-warm-orange px-4 py-2 rounded-lg hover:bg-warm-orange/20 transition" style="min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;">
                     <i class="fa fa-sign-out mr-1"></i> 退出
                 </button>
 
                 <!-- 移动端菜单按钮 -->
-                <button id="menuBtn" class="ml-4 md:hidden text-gray-700 text-xl">
+                <button id="menuBtn" class="ml-4 md:hidden text-gray-700 text-xl" style="min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;">
                     <i class="fa fa-bars"></i>
                 </button>
             </div>
@@ -85,52 +89,142 @@
         <!-- 移动端导航菜单 -->
         <div id="mobileMenu" class="md:hidden hidden bg-white border-t border-gray-200">
             <div class="container mx-auto px-4 py-2 flex flex-col space-y-1">
-                <a href="home.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-home mr-1"></i> 首页</a>
-                <a href="page1.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-book mr-1"></i> 心理科普</a>
-                <a href="page2.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-lightbulb-o mr-1"></i> AI学业疏导</a>
-                <a href="page3.html" class="px-4 py-2 text-warm-orange font-medium"><i class="fa fa-users mr-1"></i> 特殊群体关怀</a>
-                <a href="page4.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-comments mr-1"></i> 智能咨询师</a>
-                <a href="page5.html" class="px-4 py-2 text-gray-700 hover:text-warm-orange"><i class="fa fa-list-alt mr-1"></i> 心理测评</a>
+                <a href="home.html" class="px-4 py-3 text-gray-700 hover:text-warm-orange" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-home mr-2"></i> 首页</a>
+                <a href="音疗所.html" class="px-4 py-3 text-gray-700 hover:text-warm-orange" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-music mr-2"></i> 音符疗愈所</a>
+                <a href="page1.html" class="px-4 py-3 text-gray-700 hover:text-warm-orange" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-book mr-2"></i> 心理科普</a>
+                <a href="page2.html" class="px-4 py-3 text-warm-orange font-medium" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-lightbulb-o mr-2"></i> AI学业疏导</a>
+                <a href="page3.html" class="px-4 py-3 text-gray-700 hover:text-warm-orange" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-users mr-2"></i> 特殊群体关怀</a>
+                <a href="page4.html" class="px-4 py-3 text-gray-700 hover:text-warm-orange" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-comments mr-2"></i> 智能咨询师</a>
+                <a href="page5.html" class="px-4 py-3 text-gray-700 hover:text-warm-orange" style="min-height: 44px; display: flex; align-items: center;"><i class="fa fa-list-alt mr-2"></i> 心理测评</a>
             </div>
         </div>
     </header>
 
- <!-- 主要内容 -->
+    <!-- 主要内容 -->
     <section class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-2">学业压力疏导专家</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">7×24小时在线的AI心理咨询智能体，为你提供专业、私密、即时的心理支持</p >
+            <p class="text-gray-600 max-w-2xl mx-auto">7×24小时在线的AI心理咨询智能体，为你提供专业、私密、即时的心理支持</p>
         </div>
 
-        <!-- 智能体嵌入区域 -->
-        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
-            <div class="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center mb-6">
-                <i class="fa-solid fa-robot text-primary text-4xl mb-4"></i>
-                <p class="text-gray-600 mb-4">以下为学业压力疏导专家</p >
-                <!-- 智能体嵌入位置 - 替换为实际链接 -->
-                <iframe src="https://doubao.com/bot/p9dJyfxe" class="w-full h-[600px] border-0 rounded-lg mt-4" frameborder="0"></iframe>
+        <!-- 聊天界面 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <!-- 聊天头部 -->
+            <div class="bg-gradient-to-r from-warm-orange to-warm-pink p-4 text-white">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fa fa-graduation-cap text-2xl mr-3"></i>
+                        <div>
+                            <h3 class="text-lg font-semibold">学业压力疏导专家</h3>
+                            <p class="text-sm opacity-90">7×24小时在线，随时为您服务</p>
+                        </div>
+                    </div>
+                    <button id="settingsBtn" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition">
+                        <i class="fa fa-cog mr-1"></i> 设置
+                    </button>
+                </div>
             </div>
 
-            <!-- 功能说明 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                <div class="bg-warm/30 rounded-lg p-5">
-                    <i class="fa-solid fa-shield-halved text-primary text-2xl mb-3"></i>
-                    <h3 class="text-lg font-semibold mb-2">隐私保护</h3>
-                    <p class="text-gray-600 text-sm">所有咨询内容严格保密，采用端到端加密技术，保障你的隐私安全</p >
+            <!-- 消息显示区域 -->
+            <div id="chatMessages" class="h-[500px] overflow-y-auto p-4 space-y-4 bg-gray-50">
+                <!-- 欢迎消息 -->
+                <div class="flex items-start">
+                    <div class="w-10 h-10 rounded-full bg-warm-orange flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fa fa-robot"></i>
+                    </div>
+                    <div class="ml-3 bg-white rounded-lg p-3 shadow-sm max-w-[80%]">
+                        <p class="text-gray-700">您好！我是学业压力疏导专家。我随时准备倾听您的学习困扰，为您提供专业的学业压力疏导建议。请问最近在学习上有什么让您感到压力的事情吗？</p>
+                        <p class="text-xs text-gray-400 mt-2">刚刚</p>
+                    </div>
                 </div>
-                <div class="bg-warm/30 rounded-lg p-5">
-                    <i class="fa-solid fa-clock text-primary text-2xl mb-3"></i>
-                    <h3 class="text-lg font-semibold mb-2">7×24小时服务</h3>
-                    <p class="text-gray-600 text-sm">全天候在线响应，无论何时何地，都能为你提供即时的心理支持</p >
+            </div>
+
+            <!-- 输入区域 -->
+            <div class="border-t border-gray-200 p-4 bg-white">
+                <div class="flex items-end space-x-3">
+                    <div class="flex-1">
+                        <textarea
+                            id="messageInput"
+                            class="w-full border border-gray-300 rounded-lg p-3 resize-none focus:outline-none focus:ring-2 focus:ring-warm-orange focus:border-transparent"
+                            placeholder="请输入您的学习困扰或问题..."
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <button
+                        id="sendBtn"
+                        class="bg-warm-orange hover:bg-warm-orange/90 text-white px-6 py-3 rounded-lg transition flex items-center justify-center min-w-[100px]"
+                    >
+                        <i class="fa fa-paper-plane mr-2"></i>
+                        <span>发送</span>
+                    </button>
                 </div>
-                <div class="bg-warm/30 rounded-lg p-5">
-                    <i class="fa-solid fa-clock text-primary text-2xl mb-3"></i>
-                    <h3 class="text-lg font-semibold mb-2">专业指导</h3>
-                    <p class="text-gray-600 text-sm">基于专业心理学知识库，提供科学的情绪疏导和心理调节建议</p >
+                <p class="text-xs text-gray-400 mt-2">提示：您的对话内容将被严格保密，请放心倾诉</p>
+            </div>
+        </div>
+
+        <!-- 设置弹窗 -->
+        <div id="settingsModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center">
+            <div class="bg-white rounded-xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
+                <div class="bg-warm-orange text-white p-4">
+                    <h3 class="text-lg font-semibold"><i class="fa fa-cog mr-2"></i>API 设置</h3>
                 </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">API Key</label>
+                        <input
+                            type="password"
+                            id="apiKeyInput"
+                            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-warm-orange"
+                            placeholder="请输入您的豆包AI API Key"
+                        >
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">模型选择</label>
+                        <select id="modelSelect" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-warm-orange">
+                            <option value="doubao-pro-32k">Doubao Pro 32K</option>
+                            <option value="doubao-lite-32k">Doubao Lite 32K</option>
+                        </select>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                        <p class="text-sm text-yellow-800">
+                            <i class="fa fa-info-circle mr-1"></i>
+                            如何获取API Key？请访问
+                            <a href="https://www.volcengine.com/docs/82379" target="_blank" class="underline text-warm-orange">火山引擎控制台</a>
+                            注册并创建API Key
+                        </p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button id="saveSettingsBtn" class="flex-1 bg-warm-orange text-white py-2 rounded-lg hover:bg-warm-orange/90 transition">
+                            保存设置
+                        </button>
+                        <button id="closeSettingsBtn" class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition">
+                            取消
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功能说明 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="bg-warm-beige rounded-lg p-5">
+                <i class="fa fa-shield text-warm-orange text-2xl mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">隐私保护</h3>
+                <p class="text-gray-600 text-sm">所有咨询内容严格保密，采用端到端加密技术，保障你的隐私安全</p>
+            </div>
+            <div class="bg-warm-beige rounded-lg p-5">
+                <i class="fa fa-clock-o text-warm-orange text-2xl mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">7×24小时服务</h3>
+                <p class="text-gray-600 text-sm">全天候在线响应，无论何时何地，都能为你提供即时的心理支持</p>
+            </div>
+            <div class="bg-warm-beige rounded-lg p-5">
+                <i class="fa fa-graduation-cap text-warm-orange text-2xl mb-3"></i>
+                <h3 class="text-lg font-semibold mb-2">专业指导</h3>
+                <p class="text-gray-600 text-sm">基于专业心理学知识库，提供科学的情绪疏导和心理调节建议</p>
             </div>
         </div>
     </section>
+
     <footer class="bg-warm-brown text-white py-8">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -152,6 +246,7 @@
             </div>
         </div>
     </footer>
+
     <!-- 脚本逻辑 -->
     <script>
         // 验证登录状态
@@ -192,6 +287,570 @@
                 });
             });
         });
+
+        // ========== 聊天功能实现 ==========
+        class ChatAssistant {
+            constructor() {
+                this.apiKey = localStorage.getItem('doubao_api_key') || '';
+                this.model = localStorage.getItem('doubao_model') || 'doubao-pro-32k';
+                this.conversationHistory = [];
+                this.requestCount = 0;
+                this.usedAnswerIndices = {};
+                this.categoryCycle = {};
+                this.isLoading = false;
+
+                this.initElements();
+                this.initEventListeners();
+                this.loadSettings();
+            }
+
+            initElements() {
+                this.chatMessages = document.getElementById('chatMessages');
+                this.messageInput = document.getElementById('messageInput');
+                this.sendBtn = document.getElementById('sendBtn');
+                this.settingsBtn = document.getElementById('settingsBtn');
+                this.settingsModal = document.getElementById('settingsModal');
+                this.apiKeyInput = document.getElementById('apiKeyInput');
+                this.modelSelect = document.getElementById('modelSelect');
+                this.saveSettingsBtn = document.getElementById('saveSettingsBtn');
+                this.closeSettingsBtn = document.getElementById('closeSettingsBtn');
+            }
+
+            initEventListeners() {
+                // 发送消息
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+
+                // 回车发送（Ctrl+Enter或Cmd+Enter）
+                this.messageInput.addEventListener('keydown', (e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+
+                // 设置弹窗
+                this.settingsBtn.addEventListener('click', () => {
+                    this.settingsModal.classList.remove('hidden');
+                });
+
+                this.closeSettingsBtn.addEventListener('click', () => {
+                    this.settingsModal.classList.add('hidden');
+                });
+
+                this.saveSettingsBtn.addEventListener('click', () => this.saveSettings());
+
+                // 点击遮罩关闭弹窗
+                this.settingsModal.addEventListener('click', (e) => {
+                    if (e.target === this.settingsModal) {
+                        this.settingsModal.classList.add('hidden');
+                    }
+                });
+            }
+
+            loadSettings() {
+                if (this.apiKey) {
+                    this.apiKeyInput.value = this.apiKey;
+                }
+                if (this.model) {
+                    this.modelSelect.value = this.model;
+                }
+            }
+
+            saveSettings() {
+                this.apiKey = this.apiKeyInput.value.trim();
+                this.model = this.modelSelect.value;
+
+                localStorage.setItem('doubao_api_key', this.apiKey);
+                localStorage.setItem('doubao_model', this.model);
+
+                this.settingsModal.classList.add('hidden');
+                this.showNotification('设置已保存', 'success');
+            }
+
+            showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 right-4 z-50 px-4 py-2 rounded-lg shadow-lg ${
+                    type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+                } text-white`;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            async sendMessage() {
+                const message = this.messageInput.value.trim();
+                if (!message) {
+                    this.showNotification('请输入您的问题', 'error');
+                    return;
+                }
+
+                if (this.isLoading) {
+                    this.showNotification('正在处理中，请稍候', 'error');
+                    return;
+                }
+
+                // 添加用户消息
+                this.addMessage(message, 'user');
+                this.messageInput.value = '';
+
+                // 显示加载状态
+                this.isLoading = true;
+                this.updateSendButtonState(true);
+                const loadingId = this.addLoadingMessage();
+
+                try {
+                    // 调用API
+                    const response = await this.callAPI(message);
+
+                    // 移除加载消息
+                    this.removeLoadingMessage(loadingId);
+
+                    // 添加AI回复
+                    this.addMessage(response, 'assistant');
+
+                } catch (error) {
+                    console.error('API调用失败:', error);
+                    this.removeLoadingMessage(loadingId);
+                    this.addMessage('抱歉，我遇到了一些问题。请稍后再试，或者检查您的API设置。', 'assistant', true);
+                    this.showNotification('请求失败，请检查API设置', 'error');
+                } finally {
+                    this.isLoading = false;
+                    this.updateSendButtonState(false);
+                }
+            }
+
+            async callAPI(message) {
+                // 如果没有API Key，使用模拟响应
+                if (!this.apiKey) {
+                    return await this.getMockResponse(message);
+                }
+
+                // 检查是否是结束对话的信号
+                const isEndSignal = this.checkIfEndSignal(message);
+                if (isEndSignal) {
+                    this.requestCount++;
+                    const farewell = this.generateFarewell();
+                    this.conversationHistory.push({
+                        role: 'assistant',
+                        content: farewell
+                    });
+                    return farewell;
+                }
+
+                // 添加到对话历史
+                this.conversationHistory.push({
+                    role: 'user',
+                    content: message
+                });
+
+                // 答案多样性保障：添加随机种子和时间戳
+                const seed = Math.random() * 10000;
+                const timestamp = Date.now();
+                this.requestCount++;
+
+                try {
+                    const response = await fetch('https://ark.cn-beijing.volces.com/api/v3/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${this.apiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: this.model,
+                            messages: [
+                                {
+                                    role: 'system',
+                                    content: '你是一位专业、温暖、富有同理心的学业压力疏导专家。你的任务是倾听学生的学习困扰，提供专业的心理支持和学习建议。请注意：1. 保持温暖、理解的语气；2. 提供科学、专业的建议；3. 尊重来访者的隐私和感受；4. 专注于学业压力相关问题，如考试焦虑、学习困难、时间管理等。'
+                                },
+                                ...this.conversationHistory
+                            ],
+                            temperature: 0.7 + (this.requestCount % 3) * 0.1,
+                            top_p: 0.9,
+                            frequency_penalty: 0.3 + (this.requestCount % 5) * 0.1,
+                            presence_penalty: 0.3,
+                            seed: seed,
+                            user_id: `user_${timestamp}`
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API请求失败: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    let assistantMessage = data.choices[0].message.content;
+
+                    // 添加到对话历史
+                    this.conversationHistory.push({
+                        role: 'assistant',
+                        content: assistantMessage
+                    });
+
+                    // 如果对话达到10轮，主动送上祝福并建议结束
+                    if (this.requestCount >= 10 && Math.random() > 0.5) {
+                        const summary = this.generateConversationSummary();
+                        const farewell = this.generateFarewell();
+                        assistantMessage += '\n\n' + summary + farewell;
+                    }
+
+                    return assistantMessage;
+
+                } catch (error) {
+                    throw error;
+                }
+            }
+
+            // 模拟响应（当没有API Key时使用）
+            async getMockResponse(message) {
+                // 模拟网络延迟
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+
+                // 检查是否是结束对话的信号
+                const isEndSignal = this.checkIfEndSignal(message);
+                if (isEndSignal) {
+                    this.requestCount++;
+                    const farewell = this.generateFarewell();
+                    this.conversationHistory.push({
+                        role: 'assistant',
+                        content: farewell
+                    });
+                    return farewell;
+                }
+
+                // 检查是否是反问
+                const isQuestion = this.checkIfQuestion(message);
+                
+                // 问题分类识别
+                const category = this.classifyQuestion(message);
+
+                this.requestCount++;
+                
+                // 根据分类生成针对性回答
+                const response = this.generateResponse(message, category, isQuestion);
+
+                // 添加到对话历史
+                this.conversationHistory.push({
+                    role: 'assistant',
+                    content: response
+                });
+
+                // 如果对话达到10轮，主动送上祝福并建议结束
+                if (this.requestCount >= 10 && Math.random() > 0.5) {
+                    const summary = this.generateConversationSummary();
+                    const farewell = this.generateFarewell();
+                    return response + '\n\n' + summary + farewell;
+                }
+
+                return response;
+            }
+
+            // 检查是否是结束对话的信号
+            checkIfEndSignal(message) {
+                const endPatterns = [
+                    /谢谢/,
+                    /感谢/,
+                    /再见/,
+                    /拜拜/,
+                    /好了/,
+                    /没了/,
+                    /没问题了/,
+                    /就这样/,
+                    /我知道了/,
+                    /好的谢谢你/,
+                    /明白了/,
+                    /了解了/,
+                    /ok/i,
+                    /就这样吧/
+                ];
+                
+                return endPatterns.some(pattern => pattern.test(message));
+            }
+
+            // 生成祝福语
+            generateFarewell() {
+                const farewells = [
+                    '很高兴能和您聊天！希望今天的对话对您的学业有帮助。祝您学习顺利，每天都有好心情！',
+                    '感谢您的信任和分享！希望我的建议能帮到您。记得合理安排学习时间，相信您一定能越来越好。祝您学业进步！',
+                    '很开心能陪您聊这些话题。记住，学习是一个循序渐进的过程，慢慢来，您已经很棒了！祝您学习愉快！',
+                    '非常感谢您愿意和我分享。希望这些方法能真正帮到您。祝您学习进步，天天开心！',
+                    '能和您交流是我的荣幸！愿您在学习的道路上越走越顺，取得理想的成绩！',
+                    '和您聊天很愉快！记住，每一个小进步都值得庆祝。祝您学习顺利，生活美满！'
+                ];
+                
+                const index = this.requestCount % farewells.length;
+                return farewells[index];
+            }
+
+            // 生成对话总结
+            generateConversationSummary() {
+                const summaries = [
+                    '我们今天聊了很多关于学习的话题，',
+                    '回顾今天的交流，',
+                    '时间过得真快，',
+                    '和您聊了这么多，'
+                ];
+                
+                const encouragements = [
+                    '希望您能把今天聊到的方法慢慢用起来，',
+                    '希望这些建议能陪伴您更好地学习，',
+                    '希望您能记住那些对您有用的内容，',
+                    '希望今天的分享能给您一些启发，'
+                ];
+                
+                const summaryIndex = this.requestCount % summaries.length;
+                const encouragementIndex = (this.requestCount + 2) % encouragements.length;
+                
+                return summaries[summaryIndex] + encouragements[encouragementIndex];
+            }
+
+            // 检查是否是反问
+            checkIfQuestion(message) {
+                const questionPatterns = [
+                    /你觉得呢/,
+                    /你认为呢/,
+                    /怎么样/,
+                    /好不好/,
+                    /可以吗/,
+                    /行不行/,
+                    /怎么办/,
+                    /如何/,
+                    /什么建议/,
+                    /有什么办法/,
+                    /能帮我吗/,
+                    /？$/
+                ];
+                
+                return questionPatterns.some(pattern => pattern.test(message));
+            }
+
+            // 问题分类识别
+            classifyQuestion(message) {
+                const lowerMsg = message.toLowerCase();
+                
+                // 学业/考试相关
+                if (lowerMsg.includes('考试') || lowerMsg.includes('学习') || 
+                    lowerMsg.includes('作业') || lowerMsg.includes('成绩') ||
+                    lowerMsg.includes('考研') || lowerMsg.includes('高考') ||
+                    lowerMsg.includes('复习') || lowerMsg.includes('预习') ||
+                    lowerMsg.includes('作业') || lowerMsg.includes('作业')) {
+                    return 'study';
+                }
+                
+                // 焦虑/压力相关
+                if (lowerMsg.includes('焦虑') || lowerMsg.includes('压力') || 
+                    lowerMsg.includes('紧张') || lowerMsg.includes('不安')) {
+                    return 'anxiety';
+                }
+                
+                // 时间管理相关
+                if (lowerMsg.includes('时间') || lowerMsg.includes('计划') || 
+                    lowerMsg.includes('安排') || lowerMsg.includes('效率')) {
+                    return 'time';
+                }
+                
+                // 情绪管理相关
+                if (lowerMsg.includes('情绪') || lowerMsg.includes('心情') || 
+                    lowerMsg.includes('难过') || lowerMsg.includes('烦躁')) {
+                    return 'emotion';
+                }
+                
+                // 自我认知/成长相关
+                if (lowerMsg.includes('自信') || lowerMsg.includes('自卑') || 
+                    lowerMsg.includes('迷茫') || lowerMsg.includes('目标')) {
+                    return 'self';
+                }
+                
+                return 'general';
+            }
+
+            // 根据分类生成针对性回答
+            generateResponse(message, category, isQuestion) {
+                const responses = {
+                    study: [
+                        `学习压力大的时候，试试"番茄钟"工作法吧：专注学25分钟，然后休息5分钟，就像给自己的大脑放个小假。每完成4个番茄钟，就奖励自己一个较长的休息。把大任务拆成小步骤，比如"今天背20个单词"而不是"今天学英语"，每完成一个就打个勾，那种成就感会让您更有动力。找一个固定的地方学习，让身体知道"坐到这里就是要认真的"，慢慢就会更容易进入状态。`,
+                        `考试前紧张是很正常的，咱们可以一起做点小准备：先把考试相关的场景按紧张程度排个队——想到考试、看到试卷、开始答题、遇到难题。每天花15分钟想象这些场景，同时做深呼吸放松。另外，提前一天准备好文具、准考证，规划好路线，甚至模拟一下考试当天的流程，这些小准备能大大减少心里的不安。`,
+                        `学习效率不高时，可能是大脑还停留在上一个任务里。试试在换科目时，花2分钟整理一下桌面、喝口水或者伸个懒腰，让大脑有时间"换挡"。每次只做一件事，把手机放到另一个房间，告诉自己"这25分钟只属于数学（或其他科目）"。创造一个没有干扰的小空间，您会发现效率会提高很多。`,
+                        `想让知识记得更牢吗？试试"假装教别人"的方法：把学到的内容讲给空气听，或者写下来。讲不明白的地方就是您还没吃透的地方，再回头看看书。复习也有小技巧：学完第1天、第3天、第7天、第14天各复习一次，这样记得更久。准备一个错题本，记录错误的原因和正确的思路，定期看看，就能避免重复踩坑。`,
+                        `学习累了的时候，别硬撑着。大脑也需要休息，就像手机需要充电一样。学45分钟休息10分钟，站起来走动走动，看看窗外的风景，或者做几个深呼吸。休息的时候别看手机，让眼睛和大脑真正放松一下。回来的时候，您会发现精神好多了，效率也更高。`,
+                        `如果觉得学习没有动力，试试给自己设个小奖励：完成这个任务就听首喜欢的歌，背完这组单词就吃块巧克力。也可以找个学习伙伴，互相监督、互相鼓励。有时候，知道有人在和您一起努力，就会更有劲头。记住，学习不是为了别人，是为了让自己变得更好。`
+                    ],
+                    anxiety: [
+                        `我明白考试焦虑的感觉就像心里压着一块石头，让人喘不过气来。别担心，我们一起试试这些简单的方法：您可以先环顾四周，说出看到的5样东西（比如桌上的杯子、窗外的树）、摸到的4样东西（比如衣服的布料、椅子的扶手）、听到的3种声音、闻到的2种气味、尝到的1种味道。这个小练习能帮您从纷乱的思绪中平静下来。`,
+                        `焦虑来的时候，身体会不自觉地紧绷，您可以试着从脚尖开始，用力绷紧肌肉5秒，再慢慢放松10秒，一路向上到头部。就像给身体做一次深度放松，研究说这样10分钟就能让紧张的神经舒缓下来。`,
+                        `当焦虑像潮水一样涌来，别害怕，试试"呼吸小船"练习：用鼻子深深吸气4秒，感觉肚子像小船一样鼓起；屏息2秒，让小船在平静的水面停留；然后用嘴巴慢慢呼气6秒，看着小船轻轻漂远。每天练习5分钟，就像给心灵建立一个安全的避风港。`,
+                        `考试焦虑常常是因为我们想得太多太远。试试把注意力拉回到"此时此刻"：现在您在做什么？现在您需要什么？把大大的担忧拆成小小的当下，比如"我现在只需要复习这一道题"。活在当下，焦虑就会少很多。`,
+                        `心里慌乱的时候，先别急着做什么决定。找个安静的地方坐下来，闭上眼睛，感受一下自己的心跳和呼吸。告诉自己："我现在有点焦虑，这很正常，我允许自己有这种感觉。"接纳它，而不是对抗它，您会发现焦虑反而慢慢散去了。`
+                    ],
+                    time: [
+                        `时间管理可以试试"四象限法"：把任务分成重要紧急、重要不紧急、紧急不重要、不紧急不重要四类。每天先做重要紧急的事，然后把时间花在重要不紧急的事上，这样能避免总是被紧急的事推着走。`,
+                        `制定计划时，记得留一些弹性时间。不要把时间表排得太满，给自己留20%的缓冲时间来应对突发情况。每天晚上花5分钟回顾一下今天完成了什么，再简单计划一下明天要做的事。`,
+                        `试试"吃掉那只青蛙"的方法：每天先完成最难、最重要的任务，剩下的时间就会轻松很多。把大目标拆成小步骤，比如"写一篇论文"可以拆成"收集资料"、"列大纲"、"写初稿"等小任务。`,
+                        `记录自己的时间都花在哪里了，连续记录一周，您会惊讶地发现很多时间都被浪费了。然后根据记录调整自己的习惯，比如减少刷手机的时间，把更多时间用在有意义的事情上。`,
+                        `学会说"不"也很重要。不要因为不好意思而答应别人所有的请求，学会拒绝才能保护自己的时间和精力。把时间花在真正对您重要的事情上，您会活得更从容。`
+                    ],
+                    emotion: [
+                        `情绪来了别着急推开它，先给它起个名字："我现在很生气"、"我有点难过"。研究发现，仅仅说出情绪的名字，心里就会好受很多。每天花5分钟写情绪日记：发生了什么、我感觉怎么样、我做了什么。慢慢您会发现自己更容易理解和管理情绪了。`,
+                        `遇到不开心的事，试着问问自己："我现在在想什么？这个想法是真的吗？有没有其他角度看这件事？"比如考试没考好，可能会想"我真笨"，但换个角度看："这次没考好，说明我找到了需要努力的地方"。换个想法，心情也会跟着轻松起来。`,
+                        `每天晚上花一分钟想想今天发生的三件好事，比如"今天阳光很好"、"朋友帮了我一个小忙"、"我按时完成了任务"。坚持一周，您会发现生活中的小美好变多了。每周给帮助过您的人写张小纸条或发个消息，表达感谢，这份温暖会让您和对方都感到幸福。`,
+                        `情绪没有好坏之分，生气、难过、焦虑都是正常的。别对自己说"我不应该难过"、"我要坚强"。允许自己有情绪，允许自己脆弱一会儿。哭一场没关系，发泄出来反而会让您更快走出来。`,
+                        `如果情绪一直很低落，超过两周都没有好转，可能需要找专业的人聊聊了。这不是软弱，而是勇敢地寻求帮助。就像身体生病要看医生一样，心理不舒服也需要专业的支持。`
+                    ],
+                    self: [
+                        `建立自信不是一下子的事，从小事开始：设定一个今天一定能完成的小目标，比如"今天背10个单词"，完成了就给自己一个小奖励。每天写下一个自己的优点或成就，哪怕很小，比如"今天早起了"、"今天帮助了同学"。慢慢积累，您会越来越喜欢自己。`,
+                        `感到迷茫的时候，不用着急找到答案。问问自己：做什么事的时候我会忘记时间？我希望别人怎么评价我？如果只剩一年时间，我最想做什么？也可以试试小步探索：参加一次体验课、读一本相关的书、和行业里的人聊聊天。答案会在行动中慢慢清晰。`,
+                        `遇到困难时，别对自己说"我做不到"，改成"我现在还做不到，但我可以学习"。能力不是天生的，是慢慢练出来的。就像学骑车，一开始会摔，但练得多了就会了。把大目标拆成小步骤，每天进步一点点，您会看到自己的成长。`,
+                        `每个人都有自己的节奏，不必和别人比较。别人22岁就成功了，不代表您就落后了。人生不是赛跑，而是一场属于自己的旅程。找到自己的节奏，按自己的步伐前进，您会走得更稳、更远。相信自己的时间线，您的精彩会在属于您的时候到来。`,
+                        `如果您总是觉得自己不够好，试试每天对自己说一句鼓励的话："我正在努力"、"我值得被爱"、"我的努力会有回报"。慢慢地，这些积极的话语会改变您对自己的看法。您比您想象的更优秀，只是有时候您对自己太苛刻了。`
+                    ],
+                    general: [
+                        `学习生活中难免会遇到各种挑战，这很正常。关键是要保持积极的心态，相信自己有能力克服困难。如果遇到问题，不要独自承受，可以找老师、同学或家人聊聊，他们都会愿意帮助您的。`,
+                        `每天花5分钟安静地坐下来，感受自己的呼吸，看看窗外的风景，听听周围的声音。不用想太多，就只是感受当下。坚持一段时间，您会发现心里更平静了，也更容易觉察到自己的情绪。`,
+                        `生活总会有起起落落，这很正常。低谷的时候，别急着爬出来，允许自己在谷底休息一会儿。看看周围的风景，想想自己是怎么走到这里的。休息够了，再慢慢往上走。记住，低谷不是终点，而是让您积蓄力量的地方。`,
+                        `如果您觉得生活缺少意义，试试做些帮助别人的事：去当志愿者、帮同学解决一个问题、给陌生人一个微笑。有时候，意义不是找到的，而是创造出来的。在帮助别人的过程中，您会发现自己的价值。`,
+                        `保持良好的生活习惯对学习和心理健康都很重要。保证充足的睡眠、合理的饮食和适量的运动，这些都会让您更有精力面对每一天的挑战。`
+                    ]
+                };
+
+                // 如果是反问，添加引导性开头
+                let prefix = '';
+                if (isQuestion) {
+                    const prefixes = [
+                        '当然可以，',
+                        '我的建议是：',
+                        '我觉得您可以这样试试：',
+                        '让我来帮您分析一下：',
+                        '当然没问题，',
+                        '好的，让我给您一些建议：'
+                    ];
+                    prefix = prefixes[this.requestCount % prefixes.length];
+                }
+
+                const categoryResponses = responses[category];
+                
+                // 确保答案不重复
+                if (!this.usedAnswerIndices[category]) {
+                    this.usedAnswerIndices[category] = [];
+                    this.categoryCycle[category] = 0;
+                }
+                
+                if (this.usedAnswerIndices[category].length >= categoryResponses.length) {
+                    this.usedAnswerIndices[category] = [];
+                    this.categoryCycle[category]++;
+                }
+                
+                const availableIndices = [];
+                for (let i = 0; i < categoryResponses.length; i++) {
+                    if (!this.usedAnswerIndices[category].includes(i)) {
+                        availableIndices.push(i);
+                    }
+                }
+                
+                let selectedIndex;
+                if (availableIndices.length > 0) {
+                    const hashIndex = (message.length + this.requestCount + this.categoryCycle[category] * 7) % availableIndices.length;
+                    selectedIndex = availableIndices[hashIndex];
+                } else {
+                    selectedIndex = this.requestCount % categoryResponses.length;
+                }
+                
+                this.usedAnswerIndices[category].push(selectedIndex);
+                
+                return prefix + categoryResponses[selectedIndex];
+            }
+
+            addMessage(content, role, isError = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `flex items-start ${role === 'user' ? 'justify-end' : ''}`;
+
+                const time = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+
+                if (role === 'user') {
+                    messageDiv.innerHTML = `
+                        <div class="mr-3 bg-warm-orange text-white rounded-lg p-3 shadow-sm max-w-[80%]">
+                            <p>${this.escapeHtml(content)}</p>
+                            <p class="text-xs text-white/70 mt-2">${time}</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 flex-shrink-0">
+                            <i class="fa fa-user"></i>
+                        </div>
+                    `;
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="w-10 h-10 rounded-full bg-warm-orange flex items-center justify-center text-white flex-shrink-0">
+                            <i class="fa fa-robot"></i>
+                        </div>
+                        <div class="ml-3 ${isError ? 'bg-red-50 border border-red-200' : 'bg-white'} rounded-lg p-3 shadow-sm max-w-[80%]">
+                            <p class="${isError ? 'text-red-700' : 'text-gray-700'}">${this.escapeHtml(content)}</p>
+                            <p class="text-xs text-gray-400 mt-2">${time}</p>
+                        </div>
+                    `;
+                }
+
+                this.chatMessages.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+
+            addLoadingMessage() {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loading-message';
+                loadingDiv.className = 'flex items-start';
+                loadingDiv.innerHTML = `
+                    <div class="w-10 h-10 rounded-full bg-warm-orange flex items-center justify-center text-white flex-shrink-0">
+                        <i class="fa fa-robot"></i>
+                    </div>
+                    <div class="ml-3 bg-white rounded-lg p-3 shadow-sm">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-warm-orange rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-warm-orange rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                            <div class="w-2 h-2 bg-warm-orange rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-2">正在思考中...</p>
+                    </div>
+                `;
+                this.chatMessages.appendChild(loadingDiv);
+                this.scrollToBottom();
+                return 'loading-message';
+            }
+
+            removeLoadingMessage(id) {
+                const loadingDiv = document.getElementById(id);
+                if (loadingDiv) {
+                    loadingDiv.remove();
+                }
+            }
+
+            updateSendButtonState(isLoading) {
+                if (isLoading) {
+                    this.sendBtn.disabled = true;
+                    this.sendBtn.innerHTML = `
+                        <i class="fa fa-spinner fa-spin mr-2"></i>
+                        <span>发送中</span>
+                    `;
+                } else {
+                    this.sendBtn.disabled = false;
+                    this.sendBtn.innerHTML = `
+                        <i class="fa fa-paper-plane mr-2"></i>
+                        <span>发送</span>
+                    `;
+                }
+            }
+
+            scrollToBottom() {
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML.replace(/\n/g, '<br>');
+            }
+        }
+
+        // 初始化聊天助手
+        const chatAssistant = new ChatAssistant();
     </script>
 </body>
 </html>

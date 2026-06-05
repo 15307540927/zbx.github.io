@@ -35,6 +35,9 @@
             .card-shadow {
                 box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15);
             }
+            .touch-target {
+                @apply min-w-[44px] min-h-[44px] flex items-center justify-center;
+            }
         }
     </style>
 </head>
@@ -54,40 +57,40 @@
         </div>
 
         <!-- 切换标签 -->
-        <div class="flex justify-center gap-10 mb-6">
-            <button id="tabLogin" class="text-lg font-medium text-warm-orange border-b-2 border-warm-orange px-2">登录</button>
-            <button id="tabReg" class="text-lg font-medium text-gray-400 px-2">注册</button>
+        <div class="flex justify-center gap-8 mb-6">
+            <button id="tabLogin" class="text-lg font-medium text-warm-orange border-b-2 border-warm-orange px-4 py-2 touch-target">登录</button>
+            <button id="tabReg" class="text-lg font-medium text-gray-400 px-4 py-2 touch-target">注册</button>
         </div>
 
         <!-- 登录表单 -->
         <div id="loginPanel">
-            <form id="loginForm" class="space-y-4">
+            <form id="loginForm" class="space-y-5">
                 <div>
-                    <label class="block text-sm font-medium text-warm-brown mb-1">账号</label>
+                    <label class="block text-sm font-medium text-warm-brown mb-2">账号</label>
                     <div class="relative">
-                        <i class="fa fa-user absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="loginAccount" 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               class="w-full pl-12 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
                                placeholder="请输入学号/工号" required>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-warm-brown mb-1">密码</label>
+                    <label class="block text-sm font-medium text-warm-brown mb-2">密码</label>
                     <div class="relative">
-                        <i class="fa fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="password" id="loginPwd" 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               class="w-full pl-12 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
                                placeholder="请输入密码" required>
                     </div>
                 </div>
                 <div class="flex items-center justify-between">
-                    <label class="flex items-center text-sm text-gray-600">
-                        <input type="checkbox" id="rememberAccount" class="mr-2 text-warm-orange">
+                    <label class="flex items-center text-sm text-gray-600 touch-target pr-2">
+                        <input type="checkbox" id="rememberAccount" class="mr-3 w-5 h-5 text-warm-orange">
                         记住账号
                     </label>
-                    <a href="#" class="text-sm text-warm-orange hover:text-warm-brown">忘记密码？</a>
+                    <a href="#" class="text-sm text-warm-orange hover:text-warm-brown touch-target">忘记密码？</a>
                 </div>
-                <button type="submit" class="w-full bg-warm-orange text-white py-2 rounded-lg hover:bg-warm-orange/90 transition flex justify-center items-center">
+                <button type="submit" class="w-full bg-warm-orange text-white py-3 text-base rounded-lg hover:bg-warm-orange/90 transition flex justify-center items-center touch-target">
                     <i class="fa fa-sign-in mr-2"></i> 登录
                 </button>
             </form>
@@ -95,44 +98,44 @@
 
         <!-- 注册表单 -->
         <div id="regPanel" class="hidden">
-            <form id="registerForm" class="space-y-4">
+            <form id="registerForm" class="space-y-5">
                 <div>
-                    <label class="block text-sm font-medium text-warm-brown mb-1">学号/工号</label>
+                    <label class="block text-sm font-medium text-warm-brown mb-2">学号/工号</label>
                     <div class="relative">
-                        <i class="fa fa-id-card absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa fa-id-card absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="regAccount" 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               class="w-full pl-12 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
                                placeholder="请输入学号/工号" required>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-warm-brown mb-1">姓名</label>
+                    <label class="block text-sm font-medium text-warm-brown mb-2">姓名</label>
                     <div class="relative">
-                        <i class="fa fa-user-circle absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa fa-user-circle absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="text" id="regName" 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               class="w-full pl-12 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
                                placeholder="请输入真实姓名" required>
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-warm-brown mb-1">密码</label>
+                    <label class="block text-sm font-medium text-warm-brown mb-2">密码</label>
                     <div class="relative">
-                        <i class="fa fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="password" id="regPwd" 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               class="w-full pl-12 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
                                placeholder="请设置密码（6-16位）" required minlength="6" maxlength="16">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-warm-brown mb-1">确认密码</label>
+                    <label class="block text-sm font-medium text-warm-brown mb-2">确认密码</label>
                     <div class="relative">
-                        <i class="fa fa-lock-open absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa fa-lock-open absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                         <input type="password" id="regPwdConfirm" 
-                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
+                               class="w-full pl-12 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-warm-orange focus:border-warm-orange outline-none transition"
                                placeholder="请确认密码" required>
                     </div>
                 </div>
-                <button type="submit" class="w-full bg-warm-pink text-white py-2 rounded-lg hover:bg-warm-pink/90 transition flex justify-center items-center">
+                <button type="submit" class="w-full bg-warm-pink text-white py-3 text-base rounded-lg hover:bg-warm-pink/90 transition flex justify-center items-center touch-target">
                     <i class="fa fa-user-plus mr-2"></i> 注册
                 </button>
             </form>
